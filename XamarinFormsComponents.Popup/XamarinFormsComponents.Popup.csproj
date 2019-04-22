@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -6,16 +6,33 @@
     <CodeAnalysisRuleSet>..\XamarinFormsComponents.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <PackageId>XamarinFormsComponents.Popup</PackageId>
+    <Version>1.0.0</Version>
+    <Title>XamarinFormsComponents</Title>
+    <Authors>machi_pon</Authors>
+    <Owners>machi_pon</Owners>
+    <PackageProjectUrl>https://github.com/usausa/XamarinFormsComponents</PackageProjectUrl>
+    <RequireLicenseAcceptance>false</RequireLicenseAcceptance>
+    <Description>Wrapper library for Xamarin.Forms application</Description>
+    <PackageReleaseNotes>Wrapper library for Xamarin.Forms application</PackageReleaseNotes>
+    <PackageTags>xamarin</PackageTags>
+  </PropertyGroup>
+
   <ItemGroup Condition="'$(Configuration)' == 'Release'">
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="2.9.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.2" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.2">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
