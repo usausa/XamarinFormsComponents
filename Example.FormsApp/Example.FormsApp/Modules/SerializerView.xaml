@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView x:Class="Example.FormsApp.Modules.SerializerView"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resolver="clr-namespace:Smart.Forms.Resolver;assembly=Smart.Forms"
+             xmlns:shell="clr-namespace:Example.FormsApp.Shell;assembly=Example.FormsApp"
+             xmlns:modules="clr-namespace:Example.FormsApp.Modules;assembly=Example.FormsApp"
+             BindingContext="{Binding Source={x:Static modules:SerializerViewModel.DesignInstance}}"
+             resolver:BindingContextResolver.Type="{x:Type modules:SerializerViewModel}"
+             shell:ShellProperty.Title="Serializer">
+
+    <Grid Style="{StaticResource MenuGrid}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0" Style="{StaticResource NavigationButton}"
+                Text="Serialize"
+                Command="{Binding SerializeCommand}"/>
+
+        <Button Grid.Row="7" Style="{StaticResource NavigationButton}"
+                Text="Back"
+                Command="{Binding BackCommand}"/>
+
+    </Grid>
+
+</ContentView>
