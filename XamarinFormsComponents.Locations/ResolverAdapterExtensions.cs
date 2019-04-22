@@ -4,7 +4,7 @@ namespace XamarinFormsComponents
 
     public static class ResolverAdapterExtensions
     {
-        public static IResolverAdapter AddDialogs(this IResolverAdapter adapter)
+        public static IResolverAdapter AddLocationManager(this IResolverAdapter adapter)
         {
             adapter.AddComponent<ILocationManager, LocationManager>();
             return adapter;

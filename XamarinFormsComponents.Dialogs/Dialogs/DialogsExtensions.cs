@@ -3,6 +3,7 @@ namespace XamarinFormsComponents.Dialogs
     using System;
     using System.Threading.Tasks;
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
     public static class DialogsExtensions
     {
         public static void Progress(this IDialogs dialog, Action<IProgress> action)

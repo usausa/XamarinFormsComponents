@@ -50,6 +50,7 @@ namespace XamarinFormsComponents.Locations
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Ignore")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         private async Task GetLocationLoop(CancellationTokenSource cancellationTokenSource)
         {
             try
@@ -73,6 +74,7 @@ namespace XamarinFormsComponents.Locations
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Ignore")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         public async Task<LocationInformation> GetLastLocationAsync()
         {
             try
@@ -92,6 +94,7 @@ namespace XamarinFormsComponents.Locations
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Ignore")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         public async Task<LocationInformation> GetLocationAsync(CancellationTokenSource cancellationTokenSource)
         {
             try
@@ -112,6 +115,7 @@ namespace XamarinFormsComponents.Locations
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Ignore")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         public async Task<PlaceInformation[]> GetPlaceInformationAsync(double latitude, double longitude)
         {
             try

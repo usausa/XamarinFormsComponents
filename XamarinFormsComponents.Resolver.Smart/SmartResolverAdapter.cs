@@ -9,6 +9,7 @@ namespace XamarinFormsComponents
         public SmartResolverAdapter(ResolverConfig config)
         {
             this.config = config;
+            config.Bind<IActivator>().To<SmartActivator>().InSingletonScope();
         }
 
         public IResolverAdapter AddComponent<TComponent>()

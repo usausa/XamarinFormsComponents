@@ -29,16 +29,19 @@ namespace XamarinFormsComponents.Dialogs
             }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         public async Task<bool> Confirm(string message, string title, string acceptButton, string cancelButton)
         {
             return await Application.Current.MainPage.DisplayAlert(title, message, acceptButton, cancelButton);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         public async Task Information(string message, string title, string cancelButton)
         {
             await Application.Current.MainPage.DisplayAlert(title, message, cancelButton);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         public async Task<string> Select(string[] items, string title)
         {
             return await Application.Current.MainPage.DisplayActionSheet(title, null, null, items);
@@ -54,6 +57,7 @@ namespace XamarinFormsComponents.Dialogs
             return new ProgressWrapper(UserDialogs.Instance.Loading(title));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         public async Task<DateDialogResult> Date(string title = null, DateTime? value = null, DateTime? minDate = null, DateTime? maxDate = null)
         {
             var result = await UserDialogs.Instance.DatePromptAsync(new DatePromptConfig
@@ -67,6 +71,7 @@ namespace XamarinFormsComponents.Dialogs
             return new DateDialogResult(result.Ok, result.SelectedDate);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         public async Task<TimeDialogResult> Time(string title = null, TimeSpan? value = null)
         {
             var result = await UserDialogs.Instance.TimePromptAsync(new TimePromptConfig
