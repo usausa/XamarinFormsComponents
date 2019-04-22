@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XamarinFormsComponents.Popu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XamarinFormsComponents.Dialogs", "XamarinFormsComponents.Dialogs\XamarinFormsComponents.Dialogs.csproj", "{F61B8BF1-DAAF-45AC-9CC4-AAC4FDCEE7D1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XamarinFormsComponents.Location", "XamarinFormsComponents.Location\XamarinFormsComponents.Location.csproj", "{57013A2F-454F-4DF7-9DA5-8491DEF8B588}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XamarinFormsComponents.Settings", "XamarinFormsComponents.Settings\XamarinFormsComponents.Settings.csproj", "{09D4852C-62CF-46EC-BD62-12CF89A155AB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EE44F63F-F94C-495B-9326-682BE56B0E87}"
@@ -22,6 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Directory.Build.targets = Directory.Build.targets
 		README.md = README.md
 		XamarinFormsComponents.ruleset = XamarinFormsComponents.ruleset
+		XamarinFormsComponents.sln.DotSettings = XamarinFormsComponents.sln.DotSettings
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XamarinFormsComponents.Core", "XamarinFormsComponents.Core\XamarinFormsComponents.Core.csproj", "{1E2ED56B-357E-4951-97D7-2078E4E0F780}"
@@ -31,6 +30,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{BDD15BAD-9CA2-45ED-BE93-1F2B4DA76DFB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Components", "Components", "{11C63A44-6A07-42C7-AF29-74B5CDBB8676}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XamarinFormsComponents.Serializers", "XamarinFormsComponents.Serializers\XamarinFormsComponents.Serializers.csproj", "{CC81D3C8-D231-406E-A7F1-AF8F07E5A521}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XamarinFormsComponents.Locations", "XamarinFormsComponents.Locations\XamarinFormsComponents.Locations.csproj", "{A3248E42-E64A-41F7-9B67-6A4E801F06E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,10 +53,6 @@ Global
 		{F61B8BF1-DAAF-45AC-9CC4-AAC4FDCEE7D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F61B8BF1-DAAF-45AC-9CC4-AAC4FDCEE7D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F61B8BF1-DAAF-45AC-9CC4-AAC4FDCEE7D1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{57013A2F-454F-4DF7-9DA5-8491DEF8B588}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{57013A2F-454F-4DF7-9DA5-8491DEF8B588}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{57013A2F-454F-4DF7-9DA5-8491DEF8B588}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{57013A2F-454F-4DF7-9DA5-8491DEF8B588}.Release|Any CPU.Build.0 = Release|Any CPU
 		{09D4852C-62CF-46EC-BD62-12CF89A155AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{09D4852C-62CF-46EC-BD62-12CF89A155AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09D4852C-62CF-46EC-BD62-12CF89A155AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -62,6 +61,14 @@ Global
 		{1E2ED56B-357E-4951-97D7-2078E4E0F780}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E2ED56B-357E-4951-97D7-2078E4E0F780}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E2ED56B-357E-4951-97D7-2078E4E0F780}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC81D3C8-D231-406E-A7F1-AF8F07E5A521}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC81D3C8-D231-406E-A7F1-AF8F07E5A521}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC81D3C8-D231-406E-A7F1-AF8F07E5A521}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC81D3C8-D231-406E-A7F1-AF8F07E5A521}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3248E42-E64A-41F7-9B67-6A4E801F06E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3248E42-E64A-41F7-9B67-6A4E801F06E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3248E42-E64A-41F7-9B67-6A4E801F06E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3248E42-E64A-41F7-9B67-6A4E801F06E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,9 +77,10 @@ Global
 		{4651F64A-E126-4749-8A09-6D05D3EAD4E9} = {BDD15BAD-9CA2-45ED-BE93-1F2B4DA76DFB}
 		{BB0C8B9B-246B-4498-9838-72F6EF37F9C4} = {11C63A44-6A07-42C7-AF29-74B5CDBB8676}
 		{F61B8BF1-DAAF-45AC-9CC4-AAC4FDCEE7D1} = {11C63A44-6A07-42C7-AF29-74B5CDBB8676}
-		{57013A2F-454F-4DF7-9DA5-8491DEF8B588} = {11C63A44-6A07-42C7-AF29-74B5CDBB8676}
 		{09D4852C-62CF-46EC-BD62-12CF89A155AB} = {11C63A44-6A07-42C7-AF29-74B5CDBB8676}
 		{1E2ED56B-357E-4951-97D7-2078E4E0F780} = {BDD15BAD-9CA2-45ED-BE93-1F2B4DA76DFB}
+		{CC81D3C8-D231-406E-A7F1-AF8F07E5A521} = {11C63A44-6A07-42C7-AF29-74B5CDBB8676}
+		{A3248E42-E64A-41F7-9B67-6A4E801F06E7} = {11C63A44-6A07-42C7-AF29-74B5CDBB8676}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {99EDB8FB-D670-42BA-97A6-A0ADF2BA3AF5}
