@@ -29,7 +29,7 @@ namespace Example.FormsApp.Modules
             SerializeCommand = MakeAsyncCommand(async () =>
             {
                 var obj = new SerializeObject { IntValue = 100, StringValue = "abc", BoolValue = true, DateTimeValue = DateTime.Now };
-                var text = serializer.Serialize(obj);
+                var text = serializer.SerializeUtf8(obj);
                 await dialogs.Information(text);
             });
         }

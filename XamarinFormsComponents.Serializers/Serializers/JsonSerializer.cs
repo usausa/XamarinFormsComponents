@@ -1,24 +1,46 @@
 namespace XamarinFormsComponents.Serializers
 {
+    using System.IO;
+
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Serialization;
 
     public sealed class JsonSerializer : ISerializer
     {
-        private readonly JsonSerializerSettings settings;
+        private readonly Newtonsoft.Json.JsonSerializer serializer;
+
+        public JsonSerializer()
+            : this(new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                DateTimeZoneHandling = DateTimeZoneHandling.Utc,
+                DateFormatHandling = DateFormatHandling.IsoDateFormat
+            })
+        {
+        }
 
         public JsonSerializer(JsonSerializerSettings settings)
         {
-            this.settings = settings;
+            serializer = Newtonsoft.Json.JsonSerializer.Create(settings);
         }
 
-        public string Serialize(object obj)
+        public void Serialize(Stream stream, object obj)
         {
-            return JsonConvert.SerializeObject(obj, settings);
+            var sw = new StreamWriter(stream);
+            using (var jtw = new JsonTextWriter(sw))
+            {
+                serializer.Serialize(jtw, obj);
+                jtw.Flush();
+            }
         }
 
-        public T Deserialize<T>(string text)
+        public T Deserialize<T>(Stream stream)
         {
-            return JsonConvert.DeserializeObject<T>(text, settings);
+            using (var sr = new StreamReader(stream))
+            using (var jtr = new JsonTextReader(sr))
+            {
+                return serializer.Deserialize<T>(jtr);
+            }
         }
     }
 }

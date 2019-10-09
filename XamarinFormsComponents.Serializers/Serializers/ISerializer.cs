@@ -1,9 +1,11 @@
 namespace XamarinFormsComponents.Serializers
 {
+    using System.IO;
+
     public interface ISerializer
     {
-        string Serialize(object obj);
+        void Serialize(Stream stream, object obj);
 
-        T Deserialize<T>(string data);
+        T Deserialize<T>(Stream stream);
     }
 }

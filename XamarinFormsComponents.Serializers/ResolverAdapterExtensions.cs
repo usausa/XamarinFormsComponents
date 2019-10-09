@@ -21,7 +21,7 @@ namespace XamarinFormsComponents
 
         public static IResolverAdapter AddJsonSerializer(this IResolverAdapter adapter)
         {
-            adapter.AddComponent<ISerializer>(new XamarinFormsComponents.Serializers.JsonSerializer(CreateDefaultSetting()));
+            adapter.AddComponent<ISerializer>(new XamarinFormsComponents.Serializers.JsonSerializer());
             return adapter;
         }
 
