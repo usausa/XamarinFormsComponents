@@ -24,23 +24,21 @@ namespace XamarinFormsComponents.Serializers
             serializer = Newtonsoft.Json.JsonSerializer.Create(settings);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope", Justification = "Ignore")]
         public void Serialize(Stream stream, object obj)
         {
             var sw = new StreamWriter(stream);
-            using (var jtw = new JsonTextWriter(sw))
-            {
-                serializer.Serialize(jtw, obj);
-                jtw.Flush();
-            }
+            var jtw = new JsonTextWriter(sw);
+            serializer.Serialize(jtw, obj);
+            jtw.Flush();
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope", Justification = "Ignore")]
         public T Deserialize<T>(Stream stream)
         {
-            using (var sr = new StreamReader(stream))
-            using (var jtr = new JsonTextReader(sr))
-            {
-                return serializer.Deserialize<T>(jtr);
-            }
+            var sr = new StreamReader(stream);
+            var jtr = new JsonTextReader(sr);
+            return serializer.Deserialize<T>(jtr);
         }
     }
 }
