@@ -42,9 +42,9 @@ namespace XamarinFormsComponents.Dialogs
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
-        public async Task<string> Select(string[] items, string title)
+        public async Task<string> Select(string[] items, string title, string cancel = null, string destruction = null)
         {
-            return await Application.Current.MainPage.DisplayActionSheet(title, null, null, items);
+            return await Application.Current.MainPage.DisplayActionSheet(title, cancel, destruction, items);
         }
 
         public IProgress Progress(string title = null)
