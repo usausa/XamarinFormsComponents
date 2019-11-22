@@ -42,9 +42,37 @@ namespace XamarinFormsComponents.Dialogs
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
-        public async Task<string> Select(string[] items, string title, string cancel = null, string destruction = null)
+        public async Task<int> Select(string[] items, string title, string cancel = null, string destruction = null)
         {
-            return await Application.Current.MainPage.DisplayActionSheet(title, cancel, destruction, items);
+            var complete = new TaskCompletionSource<int>();
+
+            var config = new ActionSheetConfig();
+            if (!String.IsNullOrEmpty(title))
+            {
+                config.Title = title;
+            }
+
+            if (!String.IsNullOrEmpty(cancel))
+            {
+                config.Cancel = new ActionSheetOption(cancel, () => complete.TrySetResult(-1));
+            }
+
+            if (!String.IsNullOrEmpty(destruction))
+            {
+                config.Destructive = new ActionSheetOption(destruction, () => complete.TrySetResult(-2));
+            }
+
+            for (var i = 0; i < items.Length; i++)
+            {
+                var index = i;
+                config.Options.Add(new ActionSheetOption(items[i], () => complete.TrySetResult(index)));
+            }
+
+            using (UserDialogs.Instance.ActionSheet(config))
+            {
+                await complete.Task;
+                return complete.Task.Result;
+            }
         }
 
         public IProgress Progress(string title = null)

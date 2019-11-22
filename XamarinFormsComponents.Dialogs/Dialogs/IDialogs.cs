@@ -9,7 +9,7 @@ namespace XamarinFormsComponents.Dialogs
 
         Task Information(string message, string title = null, string cancelButton = "OK");
 
-        Task<string> Select(string[] items, string title = null, string cancel = null, string destruction = null);
+        Task<int> Select(string[] items, string title = null, string cancel = null, string destruction = null);
 
         IProgress Progress(string title = null);
 
