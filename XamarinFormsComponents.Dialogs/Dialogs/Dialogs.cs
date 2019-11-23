@@ -1,6 +1,7 @@
 namespace XamarinFormsComponents.Dialogs
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using Acr.UserDialogs;
@@ -41,10 +42,9 @@ namespace XamarinFormsComponents.Dialogs
             await Application.Current.MainPage.DisplayAlert(title, message, cancelButton);
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
-        public async Task<int> Select(string[] items, string title, string cancel = null, string destruction = null)
+        public async Task<SelectResult<string>> Select(IEnumerable<string> items, string title = null, string cancel = null)
         {
-            var complete = new TaskCompletionSource<int>();
+            var complete = new TaskCompletionSource<SelectResult<string>>();
 
             var config = new ActionSheetConfig();
             if (!String.IsNullOrEmpty(title))
@@ -54,23 +54,45 @@ namespace XamarinFormsComponents.Dialogs
 
             if (!String.IsNullOrEmpty(cancel))
             {
-                config.Cancel = new ActionSheetOption(cancel, () => complete.TrySetResult(-1));
+                config.Cancel = new ActionSheetOption(cancel, () => complete.TrySetResult(SelectResult<string>.Cancel));
             }
 
-            if (!String.IsNullOrEmpty(destruction))
+            foreach (var item in items)
             {
-                config.Destructive = new ActionSheetOption(destruction, () => complete.TrySetResult(-2));
-            }
-
-            for (var i = 0; i < items.Length; i++)
-            {
-                var index = i;
-                config.Options.Add(new ActionSheetOption(items[i], () => complete.TrySetResult(index)));
+                config.Options.Add(new ActionSheetOption(item ?? string.Empty, () => complete.TrySetResult(new SelectResult<string>(item))));
             }
 
             using (UserDialogs.Instance.ActionSheet(config))
             {
-                await complete.Task;
+                await complete.Task.ConfigureAwait(false);
+                return complete.Task.Result;
+            }
+        }
+
+        public async Task<SelectResult<T>> Select<T>(IEnumerable<T> items, Func<T, string> formatter, string title = null, string cancel = null)
+        {
+            var complete = new TaskCompletionSource<SelectResult<T>>();
+
+            var config = new ActionSheetConfig();
+            if (!String.IsNullOrEmpty(title))
+            {
+                config.Title = title;
+            }
+
+            if (!String.IsNullOrEmpty(cancel))
+            {
+                config.Cancel = new ActionSheetOption(cancel, () => complete.TrySetResult(SelectResult<T>.Cancel));
+            }
+
+            foreach (var item in items)
+            {
+                var text = item is null ? string.Empty : formatter(item);
+                config.Options.Add(new ActionSheetOption(text, () => complete.TrySetResult(new SelectResult<T>(item))));
+            }
+
+            using (UserDialogs.Instance.ActionSheet(config))
+            {
+                await complete.Task.ConfigureAwait(false);
                 return complete.Task.Result;
             }
         }

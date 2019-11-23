@@ -1,6 +1,7 @@
 namespace XamarinFormsComponents.Dialogs
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     public interface IDialogs
@@ -9,7 +10,9 @@ namespace XamarinFormsComponents.Dialogs
 
         Task Information(string message, string title = null, string cancelButton = "OK");
 
-        Task<int> Select(string[] items, string title = null, string cancel = null, string destruction = null);
+        Task<SelectResult<string>> Select(IEnumerable<string> items, string title = null, string cancel = null);
+
+        Task<SelectResult<T>> Select<T>(IEnumerable<T> items, Func<T, string> formatter, string title = null, string cancel = null);
 
         IProgress Progress(string title = null);
 

@@ -1,6 +1,5 @@
 namespace Example.FormsApp.Modules
 {
-    using System;
     using System.Globalization;
     using System.Linq;
     using System.Threading.Tasks;
@@ -89,11 +88,10 @@ namespace Example.FormsApp.Modules
 
         private async Task Select()
         {
-            var items = Enumerable.Range(1, 3).Select(x => $"Item-{x}").ToArray();
-            var result = await dialogs.Select(items, "選択");
-            if (!String.IsNullOrEmpty(result))
+            var result = await dialogs.Select(Enumerable.Range(1, 3), x => $"Item-{x}", "選択");
+            if (result.Selected)
             {
-                await dialogs.Information(result);
+                await dialogs.Information($"Selected={result.Value}");
             }
         }
     }
