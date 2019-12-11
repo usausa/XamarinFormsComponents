@@ -4,6 +4,6 @@ namespace XamarinFormsComponents.Popup
 
     public interface IPopupInitializeAsync<in T>
     {
-        Task Initialize(T parameter);
+        ValueTask Initialize(T parameter);
     }
 }

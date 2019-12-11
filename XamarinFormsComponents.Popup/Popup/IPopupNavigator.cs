@@ -7,14 +7,14 @@ namespace XamarinFormsComponents.Popup
     {
         void Register(object id, Type type);
 
-        Task<TResult> PopupAsync<TResult>(object id);
+        ValueTask<TResult> PopupAsync<TResult>(object id);
 
-        Task<TResult> PopupAsync<TParameter, TResult>(object id, TParameter parameter);
+        ValueTask<TResult> PopupAsync<TParameter, TResult>(object id, TParameter parameter);
 
-        Task PopupAsync(object id);
+        ValueTask PopupAsync(object id);
 
-        Task PopupAsync<TParameter>(object id, TParameter parameter);
+        ValueTask PopupAsync<TParameter>(object id, TParameter parameter);
 
-        Task PopAsync();
+        ValueTask PopAsync();
     }
 }

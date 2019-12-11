@@ -26,7 +26,7 @@ namespace XamarinFormsComponents.Popup
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
-        public async Task<TResult> PopupAsync<TResult>(object id)
+        public async ValueTask<TResult> PopupAsync<TResult>(object id)
         {
             if (!popupTypes.TryGetValue(id, out var type))
             {
@@ -67,7 +67,7 @@ namespace XamarinFormsComponents.Popup
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
-        public async Task<TResult> PopupAsync<TParameter, TResult>(object id, TParameter parameter)
+        public async ValueTask<TResult> PopupAsync<TParameter, TResult>(object id, TParameter parameter)
         {
             if (!popupTypes.TryGetValue(id, out var type))
             {
@@ -118,7 +118,7 @@ namespace XamarinFormsComponents.Popup
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
-        public async Task PopupAsync(object id)
+        public async ValueTask PopupAsync(object id)
         {
             if (!popupTypes.TryGetValue(id, out var type))
             {
@@ -152,7 +152,7 @@ namespace XamarinFormsComponents.Popup
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
-        public async Task PopupAsync<TParameter>(object id, TParameter parameter)
+        public async ValueTask PopupAsync<TParameter>(object id, TParameter parameter)
         {
             if (!popupTypes.TryGetValue(id, out var type))
             {
@@ -196,7 +196,7 @@ namespace XamarinFormsComponents.Popup
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
-        public async Task PopAsync()
+        public async ValueTask PopAsync()
         {
             await PopupNavigation.Instance.PopAsync(false);
         }

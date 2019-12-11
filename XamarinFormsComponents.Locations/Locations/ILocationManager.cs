@@ -14,10 +14,10 @@ namespace XamarinFormsComponents.Locations
 
         void Stop();
 
-        Task<LocationInformation> GetLastLocationAsync();
+        ValueTask<LocationInformation> GetLastLocationAsync();
 
-        Task<LocationInformation> GetLocationAsync(CancellationTokenSource cancellationTokenSource);
+        ValueTask<LocationInformation> GetLocationAsync(CancellationTokenSource cancellationTokenSource);
 
-        Task<PlaceInformation[]> GetPlaceInformationAsync(double latitude, double longitude);
+        ValueTask<PlaceInformation[]> GetPlaceInformationAsync(double latitude, double longitude);
     }
 }

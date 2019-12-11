@@ -12,7 +12,7 @@ namespace Example.FormsApp
             Permission.Location
         };
 
-        public static async Task<bool> IsPermissionRequired()
+        public static async ValueTask<bool> IsPermissionRequired()
         {
             foreach (var permission in RequiredPermissions)
             {
@@ -26,7 +26,7 @@ namespace Example.FormsApp
             return false;
         }
 
-        public static async Task<bool> RequestPermissions()
+        public static async ValueTask<bool> RequestPermissions()
         {
             var result = await CrossPermissions.Current.RequestPermissionsAsync(RequiredPermissions);
             foreach (var permission in RequiredPermissions)

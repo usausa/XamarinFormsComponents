@@ -8,7 +8,7 @@ namespace Example.FormsApp.Modules
 
     public static class PopupNavigatorExtensions
     {
-        public static Task<string> InputNumberAsync(this IPopupNavigator popupNavigator, string title, string value, int maxLength)
+        public static ValueTask<string> InputNumberAsync(this IPopupNavigator popupNavigator, string title, string value, int maxLength)
         {
             return popupNavigator.PopupAsync<InputParameter<string>, string>(
                 DialogId.InputNumber,

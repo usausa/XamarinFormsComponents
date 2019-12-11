@@ -31,18 +31,18 @@ namespace XamarinFormsComponents.Dialogs
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
-        public async Task<bool> Confirm(string message, string title, string acceptButton, string cancelButton)
+        public async ValueTask<bool> Confirm(string message, string title, string acceptButton, string cancelButton)
         {
             return await Application.Current.MainPage.DisplayAlert(title, message, acceptButton, cancelButton);
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
-        public async Task Information(string message, string title, string cancelButton)
+        public async ValueTask Information(string message, string title, string cancelButton)
         {
             await Application.Current.MainPage.DisplayAlert(title, message, cancelButton);
         }
 
-        public async Task<SelectResult<string>> Select(IEnumerable<string> items, string title = null, string cancel = null)
+        public async ValueTask<SelectResult<string>> Select(IEnumerable<string> items, string title = null, string cancel = null)
         {
             var complete = new TaskCompletionSource<SelectResult<string>>();
 
@@ -69,7 +69,7 @@ namespace XamarinFormsComponents.Dialogs
             }
         }
 
-        public async Task<SelectResult<T>> Select<T>(IEnumerable<T> items, Func<T, string> formatter, string title = null, string cancel = null)
+        public async ValueTask<SelectResult<T>> Select<T>(IEnumerable<T> items, Func<T, string> formatter, string title = null, string cancel = null)
         {
             var complete = new TaskCompletionSource<SelectResult<T>>();
 
@@ -108,7 +108,7 @@ namespace XamarinFormsComponents.Dialogs
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
-        public async Task<DateDialogResult> Date(string title = null, DateTime? value = null, DateTime? minDate = null, DateTime? maxDate = null)
+        public async ValueTask<DateDialogResult> Date(string title = null, DateTime? value = null, DateTime? minDate = null, DateTime? maxDate = null)
         {
             var result = await UserDialogs.Instance.DatePromptAsync(new DatePromptConfig
             {
@@ -122,7 +122,7 @@ namespace XamarinFormsComponents.Dialogs
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
-        public async Task<TimeDialogResult> Time(string title = null, TimeSpan? value = null)
+        public async ValueTask<TimeDialogResult> Time(string title = null, TimeSpan? value = null)
         {
             var result = await UserDialogs.Instance.TimePromptAsync(new TimePromptConfig
             {

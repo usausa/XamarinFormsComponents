@@ -22,7 +22,7 @@ namespace XamarinFormsComponents.Dialogs
             }
         }
 
-        public static async Task Progress(this IDialogs dialog, Func<IProgress, Task> action)
+        public static async ValueTask Progress(this IDialogs dialog, Func<IProgress, ValueTask> action)
         {
             using (var progress = dialog.Progress())
             {
@@ -30,7 +30,7 @@ namespace XamarinFormsComponents.Dialogs
             }
         }
 
-        public static async Task Progress(this IDialogs dialog, string title, Func<IProgress, Task> action)
+        public static async ValueTask Progress(this IDialogs dialog, string title, Func<IProgress, ValueTask> action)
         {
             using (var progress = dialog.Progress(title))
             {
@@ -54,7 +54,7 @@ namespace XamarinFormsComponents.Dialogs
             }
         }
 
-        public static async Task<T> Progress<T>(this IDialogs dialog, Func<IProgress, Task<T>> func)
+        public static async ValueTask<T> Progress<T>(this IDialogs dialog, Func<IProgress, ValueTask<T>> func)
         {
             using (var progress = dialog.Progress())
             {
@@ -62,7 +62,7 @@ namespace XamarinFormsComponents.Dialogs
             }
         }
 
-        public static async Task<T> Progress<T>(this IDialogs dialog, string title, Func<IProgress, Task<T>> func)
+        public static async ValueTask<T> Progress<T>(this IDialogs dialog, string title, Func<IProgress, ValueTask<T>> func)
         {
             using (var progress = dialog.Progress(title))
             {
@@ -86,7 +86,7 @@ namespace XamarinFormsComponents.Dialogs
             }
         }
 
-        public static async Task Loading(this IDialogs dialog, Func<IProgress, Task> action)
+        public static async ValueTask Loading(this IDialogs dialog, Func<IProgress, ValueTask> action)
         {
             using (var progress = dialog.Loading())
             {
@@ -94,7 +94,7 @@ namespace XamarinFormsComponents.Dialogs
             }
         }
 
-        public static async Task Loading(this IDialogs dialog, string title, Func<IProgress, Task> action)
+        public static async ValueTask Loading(this IDialogs dialog, string title, Func<IProgress, ValueTask> action)
         {
             using (var progress = dialog.Loading(title))
             {
@@ -118,7 +118,7 @@ namespace XamarinFormsComponents.Dialogs
             }
         }
 
-        public static async Task<T> Loading<T>(this IDialogs dialog, Func<IProgress, Task<T>> func)
+        public static async ValueTask<T> Loading<T>(this IDialogs dialog, Func<IProgress, ValueTask<T>> func)
         {
             using (var progress = dialog.Loading())
             {
@@ -126,7 +126,7 @@ namespace XamarinFormsComponents.Dialogs
             }
         }
 
-        public static async Task<T> Loading<T>(this IDialogs dialog, string title, Func<IProgress, Task<T>> func)
+        public static async ValueTask<T> Loading<T>(this IDialogs dialog, string title, Func<IProgress, ValueTask<T>> func)
         {
             using (var progress = dialog.Loading(title))
             {
