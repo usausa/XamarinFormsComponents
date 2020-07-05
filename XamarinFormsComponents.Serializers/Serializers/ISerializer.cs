@@ -1,11 +1,17 @@
 namespace XamarinFormsComponents.Serializers
 {
     using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public interface ISerializer
     {
-        void Serialize(Stream stream, object obj);
+        ValueTask SerializeAsync(Stream stream, object obj, CancellationToken cancel = default);
 
-        T Deserialize<T>(Stream stream);
+        string Serialize(object obj);
+
+        ValueTask<T> DeserializeAsync<T>(Stream stream, CancellationToken cancel = default);
+
+        T Deserialize<T>(string json);
     }
 }

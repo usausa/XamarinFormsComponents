@@ -1,44 +1,45 @@
 namespace XamarinFormsComponents.Serializers
 {
     using System.IO;
-
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Serialization;
+    using System.Text.Json;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public sealed class JsonSerializer : ISerializer
     {
-        private readonly Newtonsoft.Json.JsonSerializer serializer;
+        private readonly JsonSerializerOptions options;
 
         public JsonSerializer()
-            : this(new JsonSerializerSettings
+            : this(new JsonSerializerOptions
             {
-                ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                DateTimeZoneHandling = DateTimeZoneHandling.Utc,
-                DateFormatHandling = DateFormatHandling.IsoDateFormat
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             })
         {
         }
 
-        public JsonSerializer(JsonSerializerSettings settings)
+        public JsonSerializer(JsonSerializerOptions options)
         {
-            serializer = Newtonsoft.Json.JsonSerializer.Create(settings);
+            this.options = options;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope", Justification = "Ignore")]
-        public void Serialize(Stream stream, object obj)
+        public async ValueTask SerializeAsync(Stream stream, object obj, CancellationToken cancel = default)
         {
-            var sw = new StreamWriter(stream);
-            var jtw = new JsonTextWriter(sw);
-            serializer.Serialize(jtw, obj);
-            jtw.Flush();
+            await System.Text.Json.JsonSerializer.SerializeAsync(stream, obj, obj?.GetType(), options, cancel).ConfigureAwait(false);
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope", Justification = "Ignore")]
-        public T Deserialize<T>(Stream stream)
+        public string Serialize(object obj)
         {
-            var sr = new StreamReader(stream);
-            var jtr = new JsonTextReader(sr);
-            return serializer.Deserialize<T>(jtr);
+            return System.Text.Json.JsonSerializer.Serialize(obj, obj?.GetType(), options);
+        }
+
+        public async ValueTask<T> DeserializeAsync<T>(Stream stream, CancellationToken cancel = default)
+        {
+            return await System.Text.Json.JsonSerializer.DeserializeAsync<T>(stream, options, cancel).ConfigureAwait(false);
+        }
+
+        public T Deserialize<T>(string json)
+        {
+            return System.Text.Json.JsonSerializer.Deserialize<T>(json, options);
         }
     }
 }
