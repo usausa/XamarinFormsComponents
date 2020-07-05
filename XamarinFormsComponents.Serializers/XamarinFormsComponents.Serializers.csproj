@@ -9,12 +9,8 @@
   <PropertyGroup>
     <PackageId>XamarinFormsComponents.Serializers</PackageId>
     <Title>XamarinFormsComponents</Title>
-    <Authors>machi_pon</Authors>
-    <Owners>machi_pon</Owners>
-    <PackageProjectUrl>https://github.com/usausa/XamarinFormsComponents</PackageProjectUrl>
-    <RequireLicenseAcceptance>false</RequireLicenseAcceptance>
     <Description>Wrapper library for Xamarin.Forms application</Description>
-    <PackageReleaseNotes>Wrapper library for Xamarin.Forms application</PackageReleaseNotes>
+    <Summary>Wrapper library for Xamarin.Forms application</Summary>
     <PackageTags>xamarin</PackageTags>
   </PropertyGroup>
 
