@@ -2,25 +2,16 @@ namespace Example.FormsApp
 {
     using System.Threading.Tasks;
 
-    using Plugin.Permissions;
-    using Plugin.Permissions.Abstractions;
+    using Xamarin.Essentials;
 
     public static class Permissions
     {
-        public static readonly Permission[] RequiredPermissions =
-        {
-            Permission.Location
-        };
-
         public static async ValueTask<bool> IsPermissionRequired()
         {
-            foreach (var permission in RequiredPermissions)
+            var status = await Xamarin.Essentials.Permissions.CheckStatusAsync<Xamarin.Essentials.Permissions.LocationWhenInUse>();
+            if (status != PermissionStatus.Granted)
             {
-                var result = await CrossPermissions.Current.CheckPermissionStatusAsync(permission);
-                if (result != PermissionStatus.Granted)
-                {
-                    return true;
-                }
+                return true;
             }
 
             return false;
@@ -28,14 +19,10 @@ namespace Example.FormsApp
 
         public static async ValueTask<bool> RequestPermissions()
         {
-            var result = await CrossPermissions.Current.RequestPermissionsAsync(RequiredPermissions);
-            foreach (var permission in RequiredPermissions)
+            var status = await Xamarin.Essentials.Permissions.RequestAsync<Xamarin.Essentials.Permissions.LocationAlways>();
+            if (status != PermissionStatus.Granted)
             {
-                if (!result.TryGetValue(permission, out var status) ||
-                    (status != PermissionStatus.Granted))
-                {
-                    return false;
-                }
+                return false;
             }
 
             return true;

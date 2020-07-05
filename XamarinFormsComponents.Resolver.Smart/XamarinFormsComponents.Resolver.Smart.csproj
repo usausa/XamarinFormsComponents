@@ -19,7 +19,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Usa.Smart.Resolver" Version="1.8.5" />
+    <PackageReference Include="Usa.Smart.Resolver" Version="1.9.4" />
   </ItemGroup>
 
   <ItemGroup>
