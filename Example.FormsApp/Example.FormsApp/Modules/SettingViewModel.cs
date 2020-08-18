@@ -8,7 +8,7 @@ namespace Example.FormsApp.Modules
 
     public class SettingViewModel : AppViewModelBase
     {
-        public static SettingViewModel DesignInstance { get; } = null; // For design
+        public static SettingViewModel DesignInstance => null; // For design
 
         public AsyncCommand BackCommand { get; }
 

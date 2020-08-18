@@ -10,7 +10,7 @@ namespace Example.FormsApp.Modules
 
     public class PopupViewModel : AppViewModelBase
     {
-        public static PopupViewModel DesignInstance { get; } = null; // For design
+        public static PopupViewModel DesignInstance => null; // For design
 
         private readonly IDialogs dialogs;
 

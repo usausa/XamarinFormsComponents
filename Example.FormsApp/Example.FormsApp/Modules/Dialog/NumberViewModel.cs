@@ -11,7 +11,7 @@ namespace Example.FormsApp.Modules.Dialog
 
     public class NumberViewModel : AppDialogViewModelBase, IPopupResult<string>, IPopupInitialize<InputParameter<string>>
     {
-        public static NumberViewModel DesignInstance { get; } = null; // For design
+        public static NumberViewModel DesignInstance => null; // For design
 
         public NotificationValue<string> Title { get; } = new NotificationValue<string>();
 

@@ -16,7 +16,7 @@ namespace Example.FormsApp.Modules
 
     public class LocationViewModel : AppViewModelBase
     {
-        public static LocationViewModel DesignInstance { get; } = null; // For design
+        public static LocationViewModel DesignInstance => null; // For design
 
         private readonly ILocationManager locationManager;
 

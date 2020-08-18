@@ -12,7 +12,7 @@ namespace Example.FormsApp.Modules
 
     public class SerializerViewModel : AppViewModelBase
     {
-        public static SerializerViewModel DesignInstance { get; } = null; // For design
+        public static SerializerViewModel DesignInstance => null; // For design
 
         public AsyncCommand BackCommand { get; }
 
