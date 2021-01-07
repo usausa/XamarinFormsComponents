@@ -12,7 +12,7 @@ namespace Example.FormsApp
     {
         public static MainPageViewModel DesignInstance => null; // For design
 
-        public NotificationValue<string> Title { get; } = new NotificationValue<string>();
+        public NotificationValue<string> Title { get; } = new();
 
         public ApplicationState ApplicationState { get; }
 

@@ -9,7 +9,7 @@ namespace XamarinFormsComponents
     {
         private static JsonSerializerOptions CreateDefaultOption()
         {
-            return new JsonSerializerOptions
+            return new()
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             };

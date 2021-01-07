@@ -13,9 +13,9 @@ namespace Example.FormsApp.Modules.Dialog
     {
         public static NumberViewModel DesignInstance => null; // For design
 
-        public NotificationValue<string> Title { get; } = new NotificationValue<string>();
+        public NotificationValue<string> Title { get; } = new();
 
-        public TextInputModel Input { get; } = new TextInputModel();
+        public TextInputModel Input { get; } = new();
 
         public string Result { get; private set; }
 

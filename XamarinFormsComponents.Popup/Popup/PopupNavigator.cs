@@ -13,7 +13,7 @@ namespace XamarinFormsComponents.Popup
     {
         private readonly IActivator activator;
 
-        private readonly Dictionary<object, Type> popupTypes = new Dictionary<object, Type>();
+        private readonly Dictionary<object, Type> popupTypes = new();
 
         public PopupNavigator(IActivator activator)
         {
@@ -49,7 +49,7 @@ namespace XamarinFormsComponents.Popup
             };
 
             var cts = new TaskCompletionSource<TResult>();
-            popup.Disappearing += (sender, args) =>
+            popup.Disappearing += (sender, _) =>
             {
                 if (((PopupPage)sender).Content.BindingContext is IPopupResult<TResult> result)
                 {
@@ -100,7 +100,7 @@ namespace XamarinFormsComponents.Popup
             };
 
             var cts = new TaskCompletionSource<TResult>();
-            popup.Disappearing += (sender, args) =>
+            popup.Disappearing += (sender, _) =>
             {
                 if (((PopupPage)sender).Content.BindingContext is IPopupResult<TResult> result)
                 {
@@ -141,7 +141,7 @@ namespace XamarinFormsComponents.Popup
             };
 
             var cts = new TaskCompletionSource<object>();
-            popup.Disappearing += (sender, args) =>
+            popup.Disappearing += (_, _) =>
             {
                 cts.SetResult(default);
             };
@@ -185,7 +185,7 @@ namespace XamarinFormsComponents.Popup
             };
 
             var cts = new TaskCompletionSource<object>();
-            popup.Disappearing += (sender, args) =>
+            popup.Disappearing += (_, _) =>
             {
                 cts.SetResult(default);
             };

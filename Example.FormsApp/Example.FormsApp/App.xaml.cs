@@ -29,7 +29,7 @@ namespace Example.FormsApp
                 .UseResolver(resolver)
                 .UseIdViewMapper(m => m.AutoRegister(Assembly.GetExecutingAssembly().ExportedTypes))
                 .ToNavigator();
-            navigator.Navigated += (sender, args) =>
+            navigator.Navigated += (_, args) =>
             {
                 // for debug
                 System.Diagnostics.Debug.WriteLine(
@@ -61,7 +61,7 @@ namespace Example.FormsApp
                 adapter.AddSettings();
             });
 
-            config.Bind<INavigator>().ToMethod(kernel => navigator).InSingletonScope();
+            config.Bind<INavigator>().ToMethod(_ => navigator).InSingletonScope();
 
             config.Bind<ApplicationState>().ToSelf().InSingletonScope();
 

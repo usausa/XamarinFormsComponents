@@ -20,11 +20,11 @@ namespace Example.FormsApp.Modules
 
         private readonly ILocationManager locationManager;
 
-        public NotificationValue<LocationInformation> LastLocation { get; } = new NotificationValue<LocationInformation>();
+        public NotificationValue<LocationInformation> LastLocation { get; } = new();
 
-        public NotificationValue<LocationInformation> CurrentLocation { get; } = new NotificationValue<LocationInformation>();
+        public NotificationValue<LocationInformation> CurrentLocation { get; } = new();
 
-        public NotificationValue<string> Address { get; } = new NotificationValue<string>();
+        public NotificationValue<string> Address { get; } = new();
 
         public AsyncCommand BackCommand { get; }
 
@@ -56,7 +56,7 @@ namespace Example.FormsApp.Modules
                 LastLocation.Value = await locationManager.GetLastLocationAsync();
 
                 Disposables.Add(Observable
-                    .FromEvent<EventHandler<LocationEventArgs>, LocationEventArgs>(h => (s, e) => h(e), h => locationManager.LocationChanged += h, h => locationManager.LocationChanged -= h)
+                    .FromEvent<EventHandler<LocationEventArgs>, LocationEventArgs>(h => (_, e) => h(e), h => locationManager.LocationChanged += h, h => locationManager.LocationChanged -= h)
                     .ObserveOn(SynchronizationContext.Current)
                     .Subscribe(x => CurrentLocation.Value = x.Location));
             }
