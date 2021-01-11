@@ -1,4 +1,4 @@
-namespace Example.FormsApp.Models
+﻿namespace Example.FormsApp.Models
 {
     using Smart.ComponentModel;
 
@@ -23,7 +23,7 @@ namespace Example.FormsApp.Models
         {
             if (text.Length > 0)
             {
-                Text = text.Substring(0, text.Length - 1);
+                Text = text[0..^1];
             }
         }
 
