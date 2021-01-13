@@ -23,7 +23,7 @@
         {
             if (text.Length > 0)
             {
-                Text = text[0..^1];
+                Text = text[..^1];
             }
         }
 

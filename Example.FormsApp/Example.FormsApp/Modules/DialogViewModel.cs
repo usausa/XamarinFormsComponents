@@ -1,4 +1,4 @@
-namespace Example.FormsApp.Modules
+﻿namespace Example.FormsApp.Modules
 {
     using System.Globalization;
     using System.Linq;
@@ -43,23 +43,19 @@ namespace Example.FormsApp.Modules
 
         private async Task Progress()
         {
-            using (var progress = dialogs.Progress("Test"))
+            using var progress = dialogs.Progress("Test");
+            for (var i = 0; i < 100; i++)
             {
-                for (var i = 0; i < 100; i++)
-                {
-                    await Task.Delay(50);
+                await Task.Delay(50);
 
-                    progress.Update(i + 1);
-                }
+                progress.Update(i + 1);
             }
         }
 
         private async Task Loading()
         {
-            using (dialogs.Loading("Test"))
-            {
-                await Task.Delay(3000);
-            }
+            using var _ = dialogs.Loading("Test");
+            await Task.Delay(3000);
         }
 
         private async Task Date()
