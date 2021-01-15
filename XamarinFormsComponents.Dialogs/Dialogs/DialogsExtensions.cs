@@ -1,4 +1,4 @@
-﻿namespace XamarinFormsComponents.Dialogs
+namespace XamarinFormsComponents.Dialogs
 {
     using System;
     using System.Threading.Tasks;
