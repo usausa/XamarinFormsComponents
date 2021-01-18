@@ -25,7 +25,6 @@ namespace XamarinFormsComponents.Popup
             popupTypes[id] = type;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         public async ValueTask<TResult> PopupAsync<TResult>(object id)
         {
             if (!popupTypes.TryGetValue(id, out var type))
@@ -66,7 +65,6 @@ namespace XamarinFormsComponents.Popup
             return await cts.Task;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         public async ValueTask<TResult> PopupAsync<TParameter, TResult>(object id, TParameter parameter)
         {
             if (!popupTypes.TryGetValue(id, out var type))
@@ -117,7 +115,6 @@ namespace XamarinFormsComponents.Popup
             return await cts.Task;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         public async ValueTask PopupAsync(object id)
         {
             if (!popupTypes.TryGetValue(id, out var type))
@@ -151,7 +148,6 @@ namespace XamarinFormsComponents.Popup
             await cts.Task;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         public async ValueTask PopupAsync<TParameter>(object id, TParameter parameter)
         {
             if (!popupTypes.TryGetValue(id, out var type))
@@ -195,7 +191,6 @@ namespace XamarinFormsComponents.Popup
             await cts.Task;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         public async ValueTask PopAsync()
         {
             await PopupNavigation.Instance.PopAsync(false);

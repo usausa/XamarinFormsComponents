@@ -8,7 +8,6 @@ namespace XamarinFormsComponents.Locations
 
     using Xamarin.Essentials;
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable", Justification = "Ignore")]
     public sealed class LocationManager : ILocationManager
     {
         public event EventHandler<LocationEventArgs> LocationChanged;
@@ -49,8 +48,6 @@ namespace XamarinFormsComponents.Locations
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Ignore")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         private async ValueTask GetLocationLoop(CancellationTokenSource cancellationTokenSource)
         {
             try
@@ -73,8 +70,6 @@ namespace XamarinFormsComponents.Locations
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Ignore")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         public async ValueTask<LocationInformation> GetLastLocationAsync()
         {
             try
@@ -93,8 +88,6 @@ namespace XamarinFormsComponents.Locations
             return null;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Ignore")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         public async ValueTask<LocationInformation> GetLocationAsync(CancellationTokenSource cancellationTokenSource)
         {
             try
@@ -114,8 +107,6 @@ namespace XamarinFormsComponents.Locations
             return null;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Ignore")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         public async ValueTask<PlaceInformation[]> GetPlaceInformationAsync(double latitude, double longitude)
         {
             try

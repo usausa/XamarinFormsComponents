@@ -30,13 +30,11 @@ namespace XamarinFormsComponents.Dialogs
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         public async ValueTask<bool> Confirm(string message, string title, string acceptButton, string cancelButton)
         {
             return await Application.Current.MainPage.DisplayAlert(title, message, acceptButton, cancelButton);
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         public async ValueTask Information(string message, string title, string cancelButton)
         {
             await Application.Current.MainPage.DisplayAlert(title, message, cancelButton);
@@ -107,7 +105,6 @@ namespace XamarinFormsComponents.Dialogs
             return new ProgressWrapper(UserDialogs.Instance.Loading(title));
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         public async ValueTask<DateDialogResult> Date(string title = null, DateTime? value = null, DateTime? minDate = null, DateTime? maxDate = null)
         {
             var result = await UserDialogs.Instance.DatePromptAsync(new DatePromptConfig
@@ -121,7 +118,6 @@ namespace XamarinFormsComponents.Dialogs
             return new DateDialogResult(result.Ok, result.SelectedDate);
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         public async ValueTask<TimeDialogResult> Time(string title = null, TimeSpan? value = null)
         {
             var result = await UserDialogs.Instance.TimePromptAsync(new TimePromptConfig
