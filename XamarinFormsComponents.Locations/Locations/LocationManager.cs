@@ -8,6 +8,7 @@ namespace XamarinFormsComponents.Locations
 
     using Xamarin.Essentials;
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable", Justification = "Ignore")]
     public sealed class LocationManager : ILocationManager
     {
         public event EventHandler<LocationEventArgs> LocationChanged;
@@ -48,6 +49,7 @@ namespace XamarinFormsComponents.Locations
             }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Ignore")]
         private async ValueTask GetLocationLoop(CancellationTokenSource cancellationTokenSource)
         {
             try
@@ -55,13 +57,13 @@ namespace XamarinFormsComponents.Locations
                 while (!cancellationTokenSource.IsCancellationRequested)
                 {
                     var request = new GeolocationRequest(GeolocationAccuracy.Medium);
-                    var location = await Geolocation.GetLocationAsync(request, cancellationTokenSource.Token);
+                    var location = await Geolocation.GetLocationAsync(request, cancellationTokenSource.Token).ConfigureAwait(false);
                     if (location != null)
                     {
                         LocationChanged?.Invoke(this, new LocationEventArgs(new LocationInformation(location.Latitude, location.Longitude, location.Timestamp)));
                     }
 
-                    await Task.Delay(Interval, cancellationTokenSource.Token);
+                    await Task.Delay(Interval, cancellationTokenSource.Token).ConfigureAwait(false);
                 }
             }
             catch (Exception e)
@@ -70,11 +72,12 @@ namespace XamarinFormsComponents.Locations
             }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Ignore")]
         public async ValueTask<LocationInformation> GetLastLocationAsync()
         {
             try
             {
-                var location = await Geolocation.GetLastKnownLocationAsync();
+                var location = await Geolocation.GetLastKnownLocationAsync().ConfigureAwait(false);
                 if (location != null)
                 {
                     return new LocationInformation(location.Latitude, location.Longitude, location.Timestamp);
@@ -88,12 +91,13 @@ namespace XamarinFormsComponents.Locations
             return null;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Ignore")]
         public async ValueTask<LocationInformation> GetLocationAsync(CancellationTokenSource cancellationTokenSource)
         {
             try
             {
                 var request = new GeolocationRequest(GeolocationAccuracy.Medium);
-                var location = await Geolocation.GetLocationAsync(request, cancellationTokenSource.Token);
+                var location = await Geolocation.GetLocationAsync(request, cancellationTokenSource.Token).ConfigureAwait(false);
                 if (location != null)
                 {
                     return new LocationInformation(location.Latitude, location.Longitude, location.Timestamp);
@@ -107,11 +111,12 @@ namespace XamarinFormsComponents.Locations
             return null;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Ignore")]
         public async ValueTask<PlaceInformation[]> GetPlaceInformationAsync(double latitude, double longitude)
         {
             try
             {
-                var placemarks = await Geocoding.GetPlacemarksAsync(latitude, longitude);
+                var placemarks = await Geocoding.GetPlacemarksAsync(latitude, longitude).ConfigureAwait(false);
                 return placemarks.Select(x => new PlaceInformation(x)).ToArray();
             }
             catch (Exception ex)

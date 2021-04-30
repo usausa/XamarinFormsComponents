@@ -60,9 +60,9 @@ namespace XamarinFormsComponents.Popup
                 }
             };
 
-            await PopupNavigation.Instance.PushAsync(popup, false);
+            await PopupNavigation.Instance.PushAsync(popup, false).ConfigureAwait(false);
 
-            return await cts.Task;
+            return await cts.Task.ConfigureAwait(false);
         }
 
         public async ValueTask<TResult> PopupAsync<TParameter, TResult>(object id, TParameter parameter)
@@ -86,7 +86,7 @@ namespace XamarinFormsComponents.Popup
 
             if (content.BindingContext is IPopupInitializeAsync<TParameter> initializeAsync)
             {
-                await initializeAsync.Initialize(parameter);
+                await initializeAsync.Initialize(parameter).ConfigureAwait(false);
             }
 
             var popup = new PopupPage
@@ -110,9 +110,9 @@ namespace XamarinFormsComponents.Popup
                 }
             };
 
-            await PopupNavigation.Instance.PushAsync(popup, false);
+            await PopupNavigation.Instance.PushAsync(popup, false).ConfigureAwait(false);
 
-            return await cts.Task;
+            return await cts.Task.ConfigureAwait(false);
         }
 
         public async ValueTask PopupAsync(object id)
@@ -143,9 +143,9 @@ namespace XamarinFormsComponents.Popup
                 cts.SetResult(default);
             };
 
-            await PopupNavigation.Instance.PushAsync(popup, false);
+            await PopupNavigation.Instance.PushAsync(popup, false).ConfigureAwait(false);
 
-            await cts.Task;
+            await cts.Task.ConfigureAwait(false);
         }
 
         public async ValueTask PopupAsync<TParameter>(object id, TParameter parameter)
@@ -169,7 +169,7 @@ namespace XamarinFormsComponents.Popup
 
             if (content.BindingContext is IPopupInitializeAsync<TParameter> initializeAsync)
             {
-                await initializeAsync.Initialize(parameter);
+                await initializeAsync.Initialize(parameter).ConfigureAwait(false);
             }
 
             var popup = new PopupPage
@@ -186,14 +186,14 @@ namespace XamarinFormsComponents.Popup
                 cts.SetResult(default);
             };
 
-            await PopupNavigation.Instance.PushAsync(popup, false);
+            await PopupNavigation.Instance.PushAsync(popup, false).ConfigureAwait(false);
 
-            await cts.Task;
+            await cts.Task.ConfigureAwait(false);
         }
 
         public async ValueTask PopAsync()
         {
-            await PopupNavigation.Instance.PopAsync(false);
+            await PopupNavigation.Instance.PopAsync(false).ConfigureAwait(false);
         }
     }
 }

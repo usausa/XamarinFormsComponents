@@ -4,7 +4,7 @@ namespace XamarinFormsComponents
 
     using Smart.Resolver;
 
-    internal sealed class SmartActivator : IActivator
+    public sealed class SmartActivator : IActivator
     {
         private readonly SmartResolver resolver;
 

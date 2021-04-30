@@ -32,12 +32,12 @@ namespace XamarinFormsComponents.Dialogs
 
         public async ValueTask<bool> Confirm(string message, string title, string acceptButton, string cancelButton)
         {
-            return await Application.Current.MainPage.DisplayAlert(title, message, acceptButton, cancelButton);
+            return await Application.Current.MainPage.DisplayAlert(title, message, acceptButton, cancelButton).ConfigureAwait(false);
         }
 
         public async ValueTask Information(string message, string title, string cancelButton)
         {
-            await Application.Current.MainPage.DisplayAlert(title, message, cancelButton);
+            await Application.Current.MainPage.DisplayAlert(title, message, cancelButton).ConfigureAwait(false);
         }
 
         public async ValueTask<SelectResult<string>> Select(IEnumerable<string> items, string title = null, string cancel = null)
@@ -84,7 +84,7 @@ namespace XamarinFormsComponents.Dialogs
 
             foreach (var item in items)
             {
-                var text = item is null ? string.Empty : formatter(item);
+                var text = formatter(item);
                 config.Options.Add(new ActionSheetOption(text, () => complete.TrySetResult(new SelectResult<T>(item))));
             }
 
@@ -113,7 +113,7 @@ namespace XamarinFormsComponents.Dialogs
                 SelectedDate = value,
                 MaximumDate = maxDate,
                 MinimumDate = minDate
-            });
+            }).ConfigureAwait(false);
 
             return new DateDialogResult(result.Ok, result.SelectedDate);
         }
@@ -124,7 +124,7 @@ namespace XamarinFormsComponents.Dialogs
             {
                 Title = title,
                 SelectedTime = value
-            });
+            }).ConfigureAwait(false);
 
             return new TimeDialogResult(result.Ok, result.SelectedTime);
         }

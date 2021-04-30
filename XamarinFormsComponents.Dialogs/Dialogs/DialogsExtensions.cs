@@ -20,13 +20,13 @@ namespace XamarinFormsComponents.Dialogs
         public static async ValueTask Progress(this IDialogs dialog, Func<IProgress, ValueTask> action)
         {
             using var progress = dialog.Progress();
-            await action(progress);
+            await action(progress).ConfigureAwait(false);
         }
 
         public static async ValueTask Progress(this IDialogs dialog, string title, Func<IProgress, ValueTask> action)
         {
             using var progress = dialog.Progress(title);
-            await action(progress);
+            await action(progress).ConfigureAwait(false);
         }
 
         public static T Progress<T>(this IDialogs dialog, Func<IProgress, T> func)
@@ -44,13 +44,13 @@ namespace XamarinFormsComponents.Dialogs
         public static async ValueTask<T> Progress<T>(this IDialogs dialog, Func<IProgress, ValueTask<T>> func)
         {
             using var progress = dialog.Progress();
-            return await func(progress);
+            return await func(progress).ConfigureAwait(false);
         }
 
         public static async ValueTask<T> Progress<T>(this IDialogs dialog, string title, Func<IProgress, ValueTask<T>> func)
         {
             using var progress = dialog.Progress(title);
-            return await func(progress);
+            return await func(progress).ConfigureAwait(false);
         }
 
         public static void Loading(this IDialogs dialog, Action<IProgress> action)
@@ -68,13 +68,13 @@ namespace XamarinFormsComponents.Dialogs
         public static async ValueTask Loading(this IDialogs dialog, Func<IProgress, ValueTask> action)
         {
             using var progress = dialog.Loading();
-            await action(progress);
+            await action(progress).ConfigureAwait(false);
         }
 
         public static async ValueTask Loading(this IDialogs dialog, string title, Func<IProgress, ValueTask> action)
         {
             using var progress = dialog.Loading(title);
-            await action(progress);
+            await action(progress).ConfigureAwait(false);
         }
 
         public static T Loading<T>(this IDialogs dialog, Func<IProgress, T> func)
@@ -92,13 +92,13 @@ namespace XamarinFormsComponents.Dialogs
         public static async ValueTask<T> Loading<T>(this IDialogs dialog, Func<IProgress, ValueTask<T>> func)
         {
             using var progress = dialog.Loading();
-            return await func(progress);
+            return await func(progress).ConfigureAwait(false);
         }
 
         public static async ValueTask<T> Loading<T>(this IDialogs dialog, string title, Func<IProgress, ValueTask<T>> func)
         {
             using var progress = dialog.Loading(title);
-            return await func(progress);
+            return await func(progress).ConfigureAwait(false);
         }
     }
 }
