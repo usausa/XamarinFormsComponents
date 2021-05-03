@@ -9,15 +9,13 @@ namespace Example.FormsApp.Modules.Dialog
 
     using XamarinFormsComponents.Popup;
 
-    public class NumberViewModel : AppDialogViewModelBase, IPopupResult<string>, IPopupInitialize<InputParameter<string>>
+    public class NumberViewModel : AppDialogViewModelBase, IPopupResult<string?>, IPopupInitialize<InputParameter<string>>
     {
-        public static NumberViewModel DesignInstance => null; // For design
-
         public NotificationValue<string> Title { get; } = new();
 
         public TextInputModel Input { get; } = new();
 
-        public string Result { get; private set; }
+        public string? Result { get; private set; }
 
         public AsyncCommand<bool> CloseCommand { get; }
 

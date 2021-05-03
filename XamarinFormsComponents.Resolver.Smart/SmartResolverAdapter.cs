@@ -1,5 +1,6 @@
 namespace XamarinFormsComponents
 {
+    using System.Diagnostics.CodeAnalysis;
     using Smart.Resolver;
 
     public sealed class SmartResolverAdapter : IResolverAdapter
@@ -25,7 +26,7 @@ namespace XamarinFormsComponents
             return this;
         }
 
-        public IResolverAdapter AddComponent<TComponent>(TComponent component)
+        public IResolverAdapter AddComponent<TComponent>([DisallowNull] TComponent component)
         {
             config.Bind<TComponent>().ToConstant(component).InSingletonScope();
             return this;

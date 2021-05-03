@@ -10,8 +10,8 @@ namespace XamarinFormsComponents.Serializers
 
         string Serialize(object obj);
 
-        ValueTask<T> DeserializeAsync<T>(Stream stream, CancellationToken cancel = default);
+        ValueTask<T?> DeserializeAsync<T>(Stream stream, CancellationToken cancel = default);
 
-        T Deserialize<T>(string json);
+        T? Deserialize<T>(string json);
     }
 }

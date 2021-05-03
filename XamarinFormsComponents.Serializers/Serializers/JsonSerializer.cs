@@ -32,12 +32,12 @@ namespace XamarinFormsComponents.Serializers
             return System.Text.Json.JsonSerializer.Serialize(obj, obj.GetType(), options);
         }
 
-        public async ValueTask<T> DeserializeAsync<T>(Stream stream, CancellationToken cancel = default)
+        public async ValueTask<T?> DeserializeAsync<T>(Stream stream, CancellationToken cancel = default)
         {
             return await System.Text.Json.JsonSerializer.DeserializeAsync<T>(stream, options, cancel).ConfigureAwait(false);
         }
 
-        public T Deserialize<T>(string json)
+        public T? Deserialize<T>(string json)
         {
             return System.Text.Json.JsonSerializer.Deserialize<T>(json, options);
         }

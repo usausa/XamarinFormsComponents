@@ -20,6 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Directory.Build.targets = Directory.Build.targets
 		LICENSE = LICENSE
 		README.md = README.md
+		Settings.XamlStyler = Settings.XamlStyler
 		XamarinFormsComponents.ruleset = XamarinFormsComponents.ruleset
 		XamarinFormsComponents.sln.DotSettings = XamarinFormsComponents.sln.DotSettings
 	EndProjectSection
@@ -39,8 +40,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.FormsApp", "Example.FormsApp\Example.FormsApp\Example.FormsApp.csproj", "{BFE34B86-75A7-4D8C-81A5-22EB1E4AC3DE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.FormsApp.Android", "Example.FormsApp\Example.FormsApp.Android\Example.FormsApp.Android.csproj", "{17E92F4C-0309-4302-9625-711A43D3437F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.FormsApp.iOS", "Example.FormsApp\Example.FormsApp.iOS\Example.FormsApp.iOS.csproj", "{F6B57604-9770-44DF-9601-71A561C451E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -166,16 +165,6 @@ Global
 		{17E92F4C-0309-4302-9625-711A43D3437F}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{17E92F4C-0309-4302-9625-711A43D3437F}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{17E92F4C-0309-4302-9625-711A43D3437F}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
-		{F6B57604-9770-44DF-9601-71A561C451E8}.Debug|Any CPU.ActiveCfg = Debug|iPhone
-		{F6B57604-9770-44DF-9601-71A561C451E8}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{F6B57604-9770-44DF-9601-71A561C451E8}.Debug|iPhone.Build.0 = Debug|iPhone
-		{F6B57604-9770-44DF-9601-71A561C451E8}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{F6B57604-9770-44DF-9601-71A561C451E8}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{F6B57604-9770-44DF-9601-71A561C451E8}.Release|Any CPU.ActiveCfg = Release|iPhone
-		{F6B57604-9770-44DF-9601-71A561C451E8}.Release|iPhone.ActiveCfg = Release|iPhone
-		{F6B57604-9770-44DF-9601-71A561C451E8}.Release|iPhone.Build.0 = Release|iPhone
-		{F6B57604-9770-44DF-9601-71A561C451E8}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{F6B57604-9770-44DF-9601-71A561C451E8}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -190,7 +179,6 @@ Global
 		{A3248E42-E64A-41F7-9B67-6A4E801F06E7} = {11C63A44-6A07-42C7-AF29-74B5CDBB8676}
 		{BFE34B86-75A7-4D8C-81A5-22EB1E4AC3DE} = {8788AD91-DF74-4004-88B9-B84A57A8210A}
 		{17E92F4C-0309-4302-9625-711A43D3437F} = {8788AD91-DF74-4004-88B9-B84A57A8210A}
-		{F6B57604-9770-44DF-9601-71A561C451E8} = {8788AD91-DF74-4004-88B9-B84A57A8210A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {99EDB8FB-D670-42BA-97A6-A0ADF2BA3AF5}

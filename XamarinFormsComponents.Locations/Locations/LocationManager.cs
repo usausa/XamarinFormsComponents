@@ -11,11 +11,11 @@ namespace XamarinFormsComponents.Locations
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable", Justification = "Ignore")]
     public sealed class LocationManager : ILocationManager
     {
-        public event EventHandler<LocationEventArgs> LocationChanged;
+        public event EventHandler<LocationEventArgs>? LocationChanged;
 
         private bool running;
 
-        private CancellationTokenSource cts;
+        private CancellationTokenSource? cts;
 
         public int Interval { get; set; } = 15000;
 
@@ -73,7 +73,7 @@ namespace XamarinFormsComponents.Locations
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Ignore")]
-        public async ValueTask<LocationInformation> GetLastLocationAsync()
+        public async ValueTask<LocationInformation?> GetLastLocationAsync()
         {
             try
             {
@@ -92,7 +92,7 @@ namespace XamarinFormsComponents.Locations
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Ignore")]
-        public async ValueTask<LocationInformation> GetLocationAsync(CancellationTokenSource cancellationTokenSource)
+        public async ValueTask<LocationInformation?> GetLocationAsync(CancellationTokenSource cancellationTokenSource)
         {
             try
             {

@@ -16,7 +16,7 @@ namespace XamarinFormsComponents.Settings
 
         public double ReadDouble(string key, long defaultValue = default) => Preferences.Get(key, defaultValue);
 
-        public string ReadString(string key, string defaultValue = default) => Preferences.Get(key, defaultValue);
+        public string ReadString(string key, string? defaultValue = default) => Preferences.Get(key, defaultValue);
 
         public DateTime ReadDateTime(string key, DateTime defaultValue = default) => Preferences.Get(key, defaultValue);
 

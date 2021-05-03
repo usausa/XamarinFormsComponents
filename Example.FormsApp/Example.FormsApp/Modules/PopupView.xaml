@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ContentView x:Class="Example.FormsApp.Modules.PopupView"
-             xmlns="http://xamarin.com/schemas/2014/forms"
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sr="clr-namespace:Smart.Forms.Resolver;assembly=Smart.Forms"
              xmlns:shell="clr-namespace:Example.FormsApp.Shell;assembly=Example.FormsApp"
              xmlns:modules="clr-namespace:Example.FormsApp.Modules;assembly=Example.FormsApp"
-             BindingContext="{Binding Source={x:Static modules:PopupViewModel.DesignInstance}}"
+             x:Class="Example.FormsApp.Modules.PopupView"
+             x:DataType="{x:Type modules:PopupViewModel}"
              sr:BindingContextResolver.Type="{x:Type modules:PopupViewModel}"
              shell:ShellProperty.Title="Popup">
 
@@ -21,13 +21,15 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Style="{StaticResource NavigationButton}"
-                Text="Number"
-                Command="{Binding NumberCommand}"/>
+        <Button Grid.Row="0"
+                Style="{StaticResource NavigationButton}"
+                Command="{Binding NumberCommand}"
+                Text="Number" />
 
-        <Button Grid.Row="7" Style="{StaticResource NavigationButton}"
-                Text="Back"
-                Command="{Binding BackCommand}"/>
+        <Button Grid.Row="7"
+                Style="{StaticResource NavigationButton}"
+                Command="{Binding BackCommand}"
+                Text="Back" />
 
     </Grid>
 

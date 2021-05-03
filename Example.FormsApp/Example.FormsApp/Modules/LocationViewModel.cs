@@ -16,13 +16,11 @@ namespace Example.FormsApp.Modules
 
     public class LocationViewModel : AppViewModelBase
     {
-        public static LocationViewModel DesignInstance => null; // For design
-
         private readonly ILocationManager locationManager;
 
-        public NotificationValue<LocationInformation> LastLocation { get; } = new();
+        public NotificationValue<LocationInformation?> LastLocation { get; } = new();
 
-        public NotificationValue<LocationInformation> CurrentLocation { get; } = new();
+        public NotificationValue<LocationInformation?> CurrentLocation { get; } = new();
 
         public NotificationValue<string> Address { get; } = new();
 
@@ -72,12 +70,22 @@ namespace Example.FormsApp.Modules
         private async Task OpenMap()
         {
             var location = CurrentLocation.Value ?? LastLocation.Value;
+            if (location is null)
+            {
+                return;
+            }
+
             await Map.OpenAsync(location.Latitude, location.Longitude);
         }
 
         private async Task Geocode()
         {
             var location = CurrentLocation.Value ?? LastLocation.Value;
+            if (location is null)
+            {
+                return;
+            }
+
             var placemarks = await locationManager.GetPlaceInformationAsync(location.Latitude, location.Longitude);
             var placemark = placemarks.FirstOrDefault();
             if (placemark != null)

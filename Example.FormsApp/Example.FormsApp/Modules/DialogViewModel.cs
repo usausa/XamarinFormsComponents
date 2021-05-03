@@ -11,8 +11,6 @@ namespace Example.FormsApp.Modules
 
     public class DialogViewModel : AppViewModelBase
     {
-        public static DialogViewModel DesignInstance => null; // For design
-
         private readonly IDialogs dialogs;
 
         public AsyncCommand BackCommand { get; }

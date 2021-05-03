@@ -30,17 +30,17 @@ namespace XamarinFormsComponents.Dialogs
             }
         }
 
-        public async ValueTask<bool> Confirm(string message, string title, string acceptButton, string cancelButton)
+        public async ValueTask<bool> Confirm(string message, string? title = null, string acceptButton = "OK", string cancelButton = "Cancel")
         {
             return await Application.Current.MainPage.DisplayAlert(title, message, acceptButton, cancelButton).ConfigureAwait(false);
         }
 
-        public async ValueTask Information(string message, string title, string cancelButton)
+        public async ValueTask Information(string message, string? title = null, string cancelButton = "OK")
         {
             await Application.Current.MainPage.DisplayAlert(title, message, cancelButton).ConfigureAwait(false);
         }
 
-        public async ValueTask<SelectResult<string>> Select(IEnumerable<string> items, string title = null, string cancel = null)
+        public async ValueTask<SelectResult<string>> Select(IEnumerable<string> items, string? title = null, string? cancel = null)
         {
             var complete = new TaskCompletionSource<SelectResult<string>>();
 
@@ -57,7 +57,7 @@ namespace XamarinFormsComponents.Dialogs
 
             foreach (var item in items)
             {
-                config.Options.Add(new ActionSheetOption(item ?? string.Empty, () => complete.TrySetResult(new SelectResult<string>(item))));
+                config.Options.Add(new ActionSheetOption(item, () => complete.TrySetResult(new SelectResult<string>(item))));
             }
 
             using (UserDialogs.Instance.ActionSheet(config))
@@ -67,7 +67,7 @@ namespace XamarinFormsComponents.Dialogs
             }
         }
 
-        public async ValueTask<SelectResult<T>> Select<T>(IEnumerable<T> items, Func<T, string> formatter, string title = null, string cancel = null)
+        public async ValueTask<SelectResult<T>> Select<T>(IEnumerable<T> items, Func<T, string> formatter, string? title = null, string? cancel = null)
         {
             var complete = new TaskCompletionSource<SelectResult<T>>();
 
@@ -95,17 +95,17 @@ namespace XamarinFormsComponents.Dialogs
             }
         }
 
-        public IProgress Progress(string title = null)
+        public IProgress Progress(string? title = null)
         {
             return new ProgressWrapper(UserDialogs.Instance.Progress(title));
         }
 
-        public IProgress Loading(string title = null)
+        public IProgress Loading(string? title = null)
         {
             return new ProgressWrapper(UserDialogs.Instance.Loading(title));
         }
 
-        public async ValueTask<DateDialogResult> Date(string title = null, DateTime? value = null, DateTime? minDate = null, DateTime? maxDate = null)
+        public async ValueTask<DateDialogResult> Date(string? title = null, DateTime? value = null, DateTime? minDate = null, DateTime? maxDate = null)
         {
             var result = await UserDialogs.Instance.DatePromptAsync(new DatePromptConfig
             {
@@ -118,7 +118,7 @@ namespace XamarinFormsComponents.Dialogs
             return new DateDialogResult(result.Ok, result.SelectedDate);
         }
 
-        public async ValueTask<TimeDialogResult> Time(string title = null, TimeSpan? value = null)
+        public async ValueTask<TimeDialogResult> Time(string? title = null, TimeSpan? value = null)
         {
             var result = await UserDialogs.Instance.TimePromptAsync(new TimePromptConfig
             {

@@ -1,10 +1,13 @@
 namespace Example.FormsApp.Modules
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using Smart.Forms.ViewModels;
     using Smart.Navigation;
 
     public class AppViewModelBase : ViewModelBase, INavigatorAware, INavigationEventSupport
     {
+        [AllowNull]
         public INavigator Navigator { get; set; }
 
         public ApplicationState ApplicationState { get; }

@@ -56,7 +56,7 @@ namespace XamarinFormsComponents.Popup
                 }
                 else
                 {
-                    cts.SetResult(default);
+                    cts.SetResult(default!);
                 }
             };
 
@@ -106,7 +106,7 @@ namespace XamarinFormsComponents.Popup
                 }
                 else
                 {
-                    cts.SetResult(default);
+                    cts.SetResult(default!);
                 }
             };
 
@@ -140,7 +140,7 @@ namespace XamarinFormsComponents.Popup
             var cts = new TaskCompletionSource<object>();
             popup.Disappearing += (_, _) =>
             {
-                cts.SetResult(default);
+                cts.SetResult(default!);
             };
 
             await PopupNavigation.Instance.PushAsync(popup, false).ConfigureAwait(false);
@@ -183,7 +183,7 @@ namespace XamarinFormsComponents.Popup
             var cts = new TaskCompletionSource<object>();
             popup.Disappearing += (_, _) =>
             {
-                cts.SetResult(default);
+                cts.SetResult(default!);
             };
 
             await PopupNavigation.Instance.PushAsync(popup, false).ConfigureAwait(false);

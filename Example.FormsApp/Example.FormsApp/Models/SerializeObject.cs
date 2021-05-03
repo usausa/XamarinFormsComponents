@@ -6,7 +6,7 @@ namespace Example.FormsApp.Models
     {
         public int IntValue { get; set; }
 
-        public string StringValue { get; set; }
+        public string? StringValue { get; set; }
 
         public bool BoolValue { get; set; }
 

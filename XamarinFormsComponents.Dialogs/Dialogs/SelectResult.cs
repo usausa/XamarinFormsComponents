@@ -2,7 +2,7 @@ namespace XamarinFormsComponents.Dialogs
 {
     public class SelectResult<T>
     {
-        public static SelectResult<T> Cancel { get; } = new(false, default);
+        public static SelectResult<T> Cancel { get; } = new(false, default!);
 
         public bool Selected { get; internal set; }
 

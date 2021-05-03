@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<ContentView x:Class="Example.FormsApp.Modules.SettingView"
-             xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:resolver="clr-namespace:Smart.Forms.Resolver;assembly=Smart.Forms"
              xmlns:shell="clr-namespace:Example.FormsApp.Shell;assembly=Example.FormsApp"
              xmlns:modules="clr-namespace:Example.FormsApp.Modules;assembly=Example.FormsApp"
-             BindingContext="{Binding Source={x:Static modules:SettingViewModel.DesignInstance}}"
-             resolver:BindingContextResolver.Type="{x:Type modules:SettingViewModel}"
-             shell:ShellProperty.Title="Setting">
+             xmlns:resolver="clr-namespace:Smart.Forms.Resolver;assembly=Smart.Forms"
+             x:Class="Example.FormsApp.Modules.SettingView"
+             x:DataType="{x:Type modules:SettingViewModel}"
+             shell:ShellProperty.Title="Setting"
+             resolver:BindingContextResolver.Type="{x:Type modules:SettingViewModel}">
 
     <Grid Style="{StaticResource MenuGrid}">
         <Grid.RowDefinitions>
@@ -21,19 +21,23 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Style="{StaticResource NavigationButton}"
-                Text="Write"
-                Command="{Binding WriteCommand}"/>
-        <Button Grid.Row="1" Style="{StaticResource NavigationButton}"
-                Text="Read"
-                Command="{Binding ReadCommand}"/>
-        <Button Grid.Row="2" Style="{StaticResource NavigationButton}"
-                Text="Remove"
-                Command="{Binding RemoveCommand}"/>
+        <Button Grid.Row="0"
+                Style="{StaticResource NavigationButton}"
+                Command="{Binding WriteCommand}"
+                Text="Write" />
+        <Button Grid.Row="1"
+                Style="{StaticResource NavigationButton}"
+                Command="{Binding ReadCommand}"
+                Text="Read" />
+        <Button Grid.Row="2"
+                Style="{StaticResource NavigationButton}"
+                Command="{Binding RemoveCommand}"
+                Text="Remove" />
 
-        <Button Grid.Row="7" Style="{StaticResource NavigationButton}"
-                Text="Back"
-                Command="{Binding BackCommand}"/>
+        <Button Grid.Row="7"
+                Style="{StaticResource NavigationButton}"
+                Command="{Binding BackCommand}"
+                Text="Back" />
 
     </Grid>
 

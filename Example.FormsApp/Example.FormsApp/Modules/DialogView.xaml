@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ContentView x:Class="Example.FormsApp.Modules.DialogView"
-             xmlns="http://xamarin.com/schemas/2014/forms"
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sr="clr-namespace:Smart.Forms.Resolver;assembly=Smart.Forms"
              xmlns:shell="clr-namespace:Example.FormsApp.Shell;assembly=Example.FormsApp"
              xmlns:modules="clr-namespace:Example.FormsApp.Modules;assembly=Example.FormsApp"
-             BindingContext="{Binding Source={x:Static modules:DialogViewModel.DesignInstance}}"
+             x:Class="Example.FormsApp.Modules.DialogView"
+             x:DataType="{x:Type modules:DialogViewModel}"
              sr:BindingContextResolver.Type="{x:Type modules:DialogViewModel}"
              shell:ShellProperty.Title="Dialog">
 
@@ -21,28 +21,35 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Style="{StaticResource NavigationButton}"
-                Text="Progress"
-                Command="{Binding ProgressCommand}"/>
-        <Button Grid.Row="1" Style="{StaticResource NavigationButton}"
-                Text="Loading"
-                Command="{Binding LoadingCommand}"/>
-        <Button Grid.Row="2" Style="{StaticResource NavigationButton}"
-                Text="Date"
-                Command="{Binding DateCommand}"/>
-        <Button Grid.Row="3" Style="{StaticResource NavigationButton}"
-                Text="Time"
-                Command="{Binding TimeCommand}"/>
-        <Button Grid.Row="4" Style="{StaticResource NavigationButton}"
-                Text="Confirm"
-                Command="{Binding ConfirmCommand}"/>
-        <Button Grid.Row="5" Style="{StaticResource NavigationButton}"
-                Text="Select"
-                Command="{Binding SelectCommand}"/>
+        <Button Grid.Row="0"
+                Style="{StaticResource NavigationButton}"
+                Command="{Binding ProgressCommand}"
+                Text="Progress" />
+        <Button Grid.Row="1"
+                Style="{StaticResource NavigationButton}"
+                Command="{Binding LoadingCommand}"
+                Text="Loading" />
+        <Button Grid.Row="2"
+                Style="{StaticResource NavigationButton}"
+                Command="{Binding DateCommand}"
+                Text="Date" />
+        <Button Grid.Row="3"
+                Style="{StaticResource NavigationButton}"
+                Command="{Binding TimeCommand}"
+                Text="Time" />
+        <Button Grid.Row="4"
+                Style="{StaticResource NavigationButton}"
+                Command="{Binding ConfirmCommand}"
+                Text="Confirm" />
+        <Button Grid.Row="5"
+                Style="{StaticResource NavigationButton}"
+                Command="{Binding SelectCommand}"
+                Text="Select" />
 
-        <Button Grid.Row="7" Style="{StaticResource NavigationButton}"
-                Text="Back"
-                Command="{Binding BackCommand}"/>
+        <Button Grid.Row="7"
+                Style="{StaticResource NavigationButton}"
+                Command="{Binding BackCommand}"
+                Text="Back" />
 
     </Grid>
 

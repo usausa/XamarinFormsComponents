@@ -14,7 +14,7 @@ namespace XamarinFormsComponents.Settings
 
         double ReadDouble(string key, long defaultValue = default);
 
-        string ReadString(string key, string defaultValue = default);
+        string? ReadString(string key, string? defaultValue = default);
 
         DateTime ReadDateTime(string key, DateTime defaultValue = default);
 
