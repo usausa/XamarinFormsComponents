@@ -50,6 +50,8 @@ namespace XamarinFormsComponents.Popup
             var cts = new TaskCompletionSource<TResult>();
             popup.Disappearing += (sender, _) =>
             {
+                var page = (PopupPage)sender;
+
                 if (((PopupPage)sender).Content.BindingContext is IPopupResult<TResult> result)
                 {
                     cts.SetResult(result.Result);
@@ -58,6 +60,11 @@ namespace XamarinFormsComponents.Popup
                 {
                     cts.SetResult(default!);
                 }
+
+                Cleanup(page);
+                (sender as IDisposable)?.Dispose();
+                (page.BindingContext as IDisposable)?.Dispose();
+                page.BindingContext = null;
             };
 
             await PopupNavigation.Instance.PushAsync(popup, false).ConfigureAwait(false);
@@ -100,7 +107,9 @@ namespace XamarinFormsComponents.Popup
             var cts = new TaskCompletionSource<TResult>();
             popup.Disappearing += (sender, _) =>
             {
-                if (((PopupPage)sender).Content.BindingContext is IPopupResult<TResult> result)
+                var page = (PopupPage)sender;
+
+                if (page.Content.BindingContext is IPopupResult<TResult> result)
                 {
                     cts.SetResult(result.Result);
                 }
@@ -108,6 +117,11 @@ namespace XamarinFormsComponents.Popup
                 {
                     cts.SetResult(default!);
                 }
+
+                Cleanup(page);
+                (sender as IDisposable)?.Dispose();
+                (page.BindingContext as IDisposable)?.Dispose();
+                page.BindingContext = null;
             };
 
             await PopupNavigation.Instance.PushAsync(popup, false).ConfigureAwait(false);
@@ -138,9 +152,16 @@ namespace XamarinFormsComponents.Popup
             };
 
             var cts = new TaskCompletionSource<object>();
-            popup.Disappearing += (_, _) =>
+            popup.Disappearing += (sender, _) =>
             {
+                var page = (PopupPage)sender;
+
                 cts.SetResult(default!);
+
+                Cleanup(page);
+                (sender as IDisposable)?.Dispose();
+                (page.BindingContext as IDisposable)?.Dispose();
+                page.BindingContext = null;
             };
 
             await PopupNavigation.Instance.PushAsync(popup, false).ConfigureAwait(false);
@@ -181,9 +202,16 @@ namespace XamarinFormsComponents.Popup
             };
 
             var cts = new TaskCompletionSource<object>();
-            popup.Disappearing += (_, _) =>
+            popup.Disappearing += (sender, _) =>
             {
+                var page = (PopupPage)sender;
+
                 cts.SetResult(default!);
+
+                Cleanup(page);
+                (sender as IDisposable)?.Dispose();
+                (page.BindingContext as IDisposable)?.Dispose();
+                page.BindingContext = null;
             };
 
             await PopupNavigation.Instance.PushAsync(popup, false).ConfigureAwait(false);
@@ -194,6 +222,20 @@ namespace XamarinFormsComponents.Popup
         public async ValueTask PopAsync()
         {
             await PopupNavigation.Instance.PopAsync(false).ConfigureAwait(false);
+        }
+
+        private static void Cleanup(Element parent)
+        {
+            if (parent is VisualElement visualElement)
+            {
+                visualElement.Behaviors.Clear();
+                visualElement.Triggers.Clear();
+            }
+
+            foreach (var child in parent.LogicalChildren)
+            {
+                Cleanup(child);
+            }
         }
     }
 }

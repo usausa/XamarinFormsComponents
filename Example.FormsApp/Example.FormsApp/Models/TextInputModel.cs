@@ -11,7 +11,7 @@ namespace Example.FormsApp.Models
         public string Text
         {
             get => text;
-            set => SetProperty(ref text, value ?? string.Empty);
+            set => SetProperty(ref text, value);
         }
 
         public void Clear()

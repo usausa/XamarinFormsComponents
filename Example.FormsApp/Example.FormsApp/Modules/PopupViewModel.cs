@@ -1,5 +1,6 @@
 namespace Example.FormsApp.Modules
 {
+    using System;
     using System.Threading.Tasks;
 
     using Smart.Forms.Input;
@@ -35,7 +36,7 @@ namespace Example.FormsApp.Modules
         private async Task Number()
         {
             var result = await popupNavigator.InputNumberAsync("Test", "123", 5);
-            if (result != null)
+            if (!String.IsNullOrEmpty(result))
             {
                 await dialogs.Information(result, "Result");
             }
