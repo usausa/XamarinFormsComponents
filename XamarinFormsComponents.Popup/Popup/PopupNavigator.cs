@@ -13,11 +13,14 @@ namespace XamarinFormsComponents.Popup
     {
         private readonly IActivator activator;
 
+        private readonly IPopupPageFactory pageFactory;
+
         private readonly Dictionary<object, Type> popupTypes = new();
 
-        public PopupNavigator(IActivator activator)
+        public PopupNavigator(IActivator activator, IPopupPageFactory pageFactory)
         {
             this.activator = activator;
+            this.pageFactory = pageFactory;
         }
 
         public void Register(object id, Type type)
@@ -39,13 +42,7 @@ namespace XamarinFormsComponents.Popup
                 aware.PopupNavigator = this;
             }
 
-            var popup = new PopupPage
-            {
-                Content = content,
-                CloseWhenBackgroundIsClicked = false,
-                HasSystemPadding = true,
-                Padding = PopupProperty.GetThickness(content)
-            };
+            var popup = pageFactory.Create(content);
 
             var cts = new TaskCompletionSource<TResult>();
             popup.Disappearing += (sender, _) =>
@@ -96,13 +93,7 @@ namespace XamarinFormsComponents.Popup
                 await initializeAsync.Initialize(parameter).ConfigureAwait(false);
             }
 
-            var popup = new PopupPage
-            {
-                Content = content,
-                CloseWhenBackgroundIsClicked = false,
-                HasSystemPadding = true,
-                Padding = PopupProperty.GetThickness(content)
-            };
+            var popup = pageFactory.Create(content);
 
             var cts = new TaskCompletionSource<TResult>();
             popup.Disappearing += (sender, _) =>
@@ -143,13 +134,7 @@ namespace XamarinFormsComponents.Popup
                 aware.PopupNavigator = this;
             }
 
-            var popup = new PopupPage
-            {
-                Content = content,
-                CloseWhenBackgroundIsClicked = false,
-                HasSystemPadding = true,
-                Padding = PopupProperty.GetThickness(content)
-            };
+            var popup = pageFactory.Create(content);
 
             var cts = new TaskCompletionSource<object>();
             popup.Disappearing += (sender, _) =>
@@ -193,13 +178,7 @@ namespace XamarinFormsComponents.Popup
                 await initializeAsync.Initialize(parameter).ConfigureAwait(false);
             }
 
-            var popup = new PopupPage
-            {
-                Content = content,
-                CloseWhenBackgroundIsClicked = false,
-                HasSystemPadding = true,
-                Padding = PopupProperty.GetThickness(content)
-            };
+            var popup = pageFactory.Create(content);
 
             var cts = new TaskCompletionSource<object>();
             popup.Disappearing += (sender, _) =>
