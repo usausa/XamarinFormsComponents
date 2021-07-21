@@ -11,15 +11,15 @@ namespace XamarinFormsComponents.Popup
 
     public sealed class PopupNavigator : IPopupNavigator
     {
-        private readonly IActivator activator;
+        private readonly IServiceProvider serviceProvider;
 
         private readonly IPopupPageFactory pageFactory;
 
         private readonly Dictionary<object, Type> popupTypes = new();
 
-        public PopupNavigator(IActivator activator, IPopupPageFactory pageFactory)
+        public PopupNavigator(IServiceProvider serviceProvider, IPopupPageFactory pageFactory)
         {
-            this.activator = activator;
+            this.serviceProvider = serviceProvider;
             this.pageFactory = pageFactory;
         }
 
@@ -35,7 +35,7 @@ namespace XamarinFormsComponents.Popup
                 throw new ArgumentException($"Invalid id=[{id}]", nameof(id));
             }
 
-            var content = (View)activator.Create(type);
+            var content = (View)serviceProvider.GetService(type);
 
             if (content.BindingContext is IPopupNavigatorAware aware)
             {
@@ -76,7 +76,7 @@ namespace XamarinFormsComponents.Popup
                 throw new ArgumentException($"Invalid id=[{id}]", nameof(id));
             }
 
-            var content = (View)activator.Create(type);
+            var content = (View)serviceProvider.GetService(type);
 
             if (content.BindingContext is IPopupNavigatorAware aware)
             {
@@ -127,7 +127,7 @@ namespace XamarinFormsComponents.Popup
                 throw new ArgumentException($"Invalid id=[{id}]", nameof(id));
             }
 
-            var content = (View)activator.Create(type);
+            var content = (View)serviceProvider.GetService(type);
 
             if (content.BindingContext is IPopupNavigatorAware aware)
             {
@@ -161,7 +161,7 @@ namespace XamarinFormsComponents.Popup
                 throw new ArgumentException($"Invalid id=[{id}]", nameof(id));
             }
 
-            var content = (View)activator.Create(type);
+            var content = (View)serviceProvider.GetService(type);
 
             if (content.BindingContext is IPopupNavigatorAware aware)
             {

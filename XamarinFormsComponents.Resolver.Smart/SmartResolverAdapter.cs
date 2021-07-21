@@ -1,6 +1,7 @@
 namespace XamarinFormsComponents
 {
     using System.Diagnostics.CodeAnalysis;
+
     using Smart.Resolver;
 
     public sealed class SmartResolverAdapter : IResolverAdapter
@@ -10,7 +11,6 @@ namespace XamarinFormsComponents
         public SmartResolverAdapter(ResolverConfig config)
         {
             this.config = config;
-            config.Bind<IActivator>().To<SmartActivator>().InSingletonScope();
         }
 
         public IResolverAdapter AddComponent<TComponent>()
