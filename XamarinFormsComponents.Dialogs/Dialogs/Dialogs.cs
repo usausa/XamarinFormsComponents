@@ -62,8 +62,7 @@ namespace XamarinFormsComponents.Dialogs
 
             using (UserDialogs.Instance.ActionSheet(config))
             {
-                await complete.Task.ConfigureAwait(false);
-                return complete.Task.Result;
+                return await complete.Task.ConfigureAwait(false);
             }
         }
 
@@ -90,8 +89,7 @@ namespace XamarinFormsComponents.Dialogs
 
             using (UserDialogs.Instance.ActionSheet(config))
             {
-                await complete.Task.ConfigureAwait(false);
-                return complete.Task.Result;
+                return await complete.Task.ConfigureAwait(false);
             }
         }
 
