@@ -1,13 +1,12 @@
-namespace Example.FormsApp.Modules
-{
-    using Smart.Navigation.Attributes;
+namespace Example.FormsApp.Modules;
 
-    [View(ViewId.Location)]
-    public partial class LocationView
+using Smart.Navigation.Attributes;
+
+[View(ViewId.Location)]
+public partial class LocationView
+{
+    public LocationView()
     {
-        public LocationView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

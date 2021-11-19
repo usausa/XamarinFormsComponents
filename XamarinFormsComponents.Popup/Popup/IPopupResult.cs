@@ -1,7 +1,6 @@
-namespace XamarinFormsComponents.Popup
+namespace XamarinFormsComponents.Popup;
+
+public interface IPopupResult<out T>
 {
-    public interface IPopupResult<out T>
-    {
-        T Result { get; }
-    }
+    T Result { get; }
 }

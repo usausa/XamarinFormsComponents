@@ -1,7 +1,6 @@
-namespace XamarinFormsComponents.Popup
+namespace XamarinFormsComponents.Popup;
+
+public interface IPopupNavigatorAware
 {
-    public interface IPopupNavigatorAware
-    {
-        IPopupNavigator PopupNavigator { get; set; }
-    }
+    IPopupNavigator PopupNavigator { get; set; }
 }

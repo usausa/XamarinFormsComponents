@@ -1,13 +1,12 @@
-namespace Example.FormsApp.Modules
-{
-    using Smart.Navigation.Attributes;
+namespace Example.FormsApp.Modules;
 
-    [View(ViewId.Popup)]
-    public partial class PopupView
+using Smart.Navigation.Attributes;
+
+[View(ViewId.Popup)]
+public partial class PopupView
+{
+    public PopupView()
     {
-        public PopupView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

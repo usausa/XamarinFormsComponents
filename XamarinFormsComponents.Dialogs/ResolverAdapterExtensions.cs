@@ -1,13 +1,12 @@
-namespace XamarinFormsComponents
-{
-    using XamarinFormsComponents.Dialogs;
+namespace XamarinFormsComponents;
 
-    public static class ResolverAdapterExtensions
+using XamarinFormsComponents.Dialogs;
+
+public static class ResolverAdapterExtensions
+{
+    public static IResolverAdapter AddDialogs(this IResolverAdapter adapter)
     {
-        public static IResolverAdapter AddDialogs(this IResolverAdapter adapter)
-        {
-            adapter.AddComponent<IDialogs, XamarinFormsComponents.Dialogs.Dialogs>();
-            return adapter;
-        }
+        adapter.AddComponent<IDialogs, XamarinFormsComponents.Dialogs.Dialogs>();
+        return adapter;
     }
 }

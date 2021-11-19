@@ -1,12 +1,11 @@
-namespace Example.FormsApp.Modules
+namespace Example.FormsApp.Modules;
+
+public enum ViewId
 {
-    public enum ViewId
-    {
-        Menu,
-        Dialog,
-        Popup,
-        Location,
-        Serializer,
-        Setting
-    }
+    Menu,
+    Dialog,
+    Popup,
+    Location,
+    Serializer,
+    Setting
 }

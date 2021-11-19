@@ -1,14 +1,13 @@
-namespace XamarinFormsComponents.Locations
+namespace XamarinFormsComponents.Locations;
+
+using System;
+
+public sealed class LocationEventArgs : EventArgs
 {
-    using System;
+    public LocationInformation Location { get; }
 
-    public sealed class LocationEventArgs : EventArgs
+    public LocationEventArgs(LocationInformation location)
     {
-        public LocationInformation Location { get; }
-
-        public LocationEventArgs(LocationInformation location)
-        {
-            Location = location;
-        }
+        Location = location;
     }
 }

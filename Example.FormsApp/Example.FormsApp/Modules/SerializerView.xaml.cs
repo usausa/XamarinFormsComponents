@@ -1,13 +1,12 @@
-namespace Example.FormsApp.Modules
-{
-    using Smart.Navigation.Attributes;
+namespace Example.FormsApp.Modules;
 
-    [View(ViewId.Serializer)]
-    public partial class SerializerView
+using Smart.Navigation.Attributes;
+
+[View(ViewId.Serializer)]
+public partial class SerializerView
+{
+    public SerializerView()
     {
-        public SerializerView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

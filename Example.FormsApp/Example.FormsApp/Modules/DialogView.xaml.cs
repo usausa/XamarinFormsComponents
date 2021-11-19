@@ -1,13 +1,12 @@
-namespace Example.FormsApp.Modules
-{
-    using Smart.Navigation.Attributes;
+namespace Example.FormsApp.Modules;
 
-    [View(ViewId.Dialog)]
-    public partial class DialogView
+using Smart.Navigation.Attributes;
+
+[View(ViewId.Dialog)]
+public partial class DialogView
+{
+    public DialogView()
     {
-        public DialogView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

@@ -1,21 +1,20 @@
-namespace Example.FormsApp.Modules
+namespace Example.FormsApp.Modules;
+
+using System.Diagnostics.CodeAnalysis;
+
+using Smart.Forms.ViewModels;
+
+using XamarinFormsComponents.Popup;
+
+public class AppDialogViewModelBase : ViewModelBase, IPopupNavigatorAware
 {
-    using System.Diagnostics.CodeAnalysis;
+    [AllowNull]
+    public IPopupNavigator PopupNavigator { get; set; }
 
-    using Smart.Forms.ViewModels;
-
-    using XamarinFormsComponents.Popup;
-
-    public class AppDialogViewModelBase : ViewModelBase, IPopupNavigatorAware
+    protected override void Dispose(bool disposing)
     {
-        [AllowNull]
-        public IPopupNavigator PopupNavigator { get; set; }
+        base.Dispose(disposing);
 
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
-
-            System.Diagnostics.Debug.WriteLine($"{GetType()} is Disposed");
-        }
+        System.Diagnostics.Debug.WriteLine($"{GetType()} is Disposed");
     }
 }

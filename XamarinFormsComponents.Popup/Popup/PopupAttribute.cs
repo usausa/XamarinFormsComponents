@@ -1,15 +1,14 @@
-namespace XamarinFormsComponents.Popup
+namespace XamarinFormsComponents.Popup;
+
+using System;
+
+[AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
+public sealed class PopupAttribute : Attribute
 {
-    using System;
+    public object Id { get; }
 
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-    public sealed class PopupAttribute : Attribute
+    public PopupAttribute(object id)
     {
-        public object Id { get; }
-
-        public PopupAttribute(object id)
-        {
-            Id = id;
-        }
+        Id = id;
     }
 }

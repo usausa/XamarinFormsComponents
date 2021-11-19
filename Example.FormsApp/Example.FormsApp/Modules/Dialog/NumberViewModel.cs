@@ -1,51 +1,50 @@
-namespace Example.FormsApp.Modules.Dialog
+namespace Example.FormsApp.Modules.Dialog;
+
+using System.Threading.Tasks;
+
+using Example.FormsApp.Models;
+
+using Smart.ComponentModel;
+using Smart.Forms.Input;
+
+using XamarinFormsComponents.Popup;
+
+public class NumberViewModel : AppDialogViewModelBase, IPopupResult<string?>, IPopupInitialize<InputParameter<string>>
 {
-    using System.Threading.Tasks;
+    public NotificationValue<string> Title { get; } = new();
 
-    using Example.FormsApp.Models;
+    public TextInputModel Input { get; } = new();
 
-    using Smart.ComponentModel;
-    using Smart.Forms.Input;
+    public string? Result { get; private set; }
 
-    using XamarinFormsComponents.Popup;
+    public AsyncCommand<bool> CloseCommand { get; }
 
-    public class NumberViewModel : AppDialogViewModelBase, IPopupResult<string?>, IPopupInitialize<InputParameter<string>>
+    public DelegateCommand ClearCommand { get; }
+    public DelegateCommand PopCommand { get; }
+    public DelegateCommand<string> PushCommand { get; }
+
+    public NumberViewModel()
     {
-        public NotificationValue<string> Title { get; } = new();
+        CloseCommand = MakeAsyncCommand<bool>(Close);
+        ClearCommand = MakeDelegateCommand(() => Input.Clear());
+        PopCommand = MakeDelegateCommand(() => Input.Pop());
+        PushCommand = MakeDelegateCommand<string>(x => Input.Push(x));
+    }
 
-        public TextInputModel Input { get; } = new();
+    public void Initialize(InputParameter<string> parameter)
+    {
+        Title.Value = parameter.Title;
+        Input.MaxLength = parameter.MaxLength;
+        Input.Text = parameter.Value;
+    }
 
-        public string? Result { get; private set; }
-
-        public AsyncCommand<bool> CloseCommand { get; }
-
-        public DelegateCommand ClearCommand { get; }
-        public DelegateCommand PopCommand { get; }
-        public DelegateCommand<string> PushCommand { get; }
-
-        public NumberViewModel()
+    private async Task Close(bool commit)
+    {
+        if (commit)
         {
-            CloseCommand = MakeAsyncCommand<bool>(Close);
-            ClearCommand = MakeDelegateCommand(() => Input.Clear());
-            PopCommand = MakeDelegateCommand(() => Input.Pop());
-            PushCommand = MakeDelegateCommand<string>(x => Input.Push(x));
+            Result = Input.Text;
         }
 
-        public void Initialize(InputParameter<string> parameter)
-        {
-            Title.Value = parameter.Title;
-            Input.MaxLength = parameter.MaxLength;
-            Input.Text = parameter.Value;
-        }
-
-        private async Task Close(bool commit)
-        {
-            if (commit)
-            {
-                Result = Input.Text;
-            }
-
-            await PopupNavigator.PopAsync();
-        }
+        await PopupNavigator.PopAsync();
     }
 }

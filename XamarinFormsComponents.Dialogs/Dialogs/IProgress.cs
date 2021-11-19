@@ -1,9 +1,8 @@
-namespace XamarinFormsComponents.Dialogs
-{
-    using System;
+namespace XamarinFormsComponents.Dialogs;
 
-    public interface IProgress : IDisposable
-    {
-        void Update(int percent);
-    }
+using System;
+
+public interface IProgress : IDisposable
+{
+    void Update(int percent);
 }

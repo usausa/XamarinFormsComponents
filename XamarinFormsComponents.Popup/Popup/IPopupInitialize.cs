@@ -1,7 +1,6 @@
-namespace XamarinFormsComponents.Popup
+namespace XamarinFormsComponents.Popup;
+
+public interface IPopupInitialize<in T>
 {
-    public interface IPopupInitialize<in T>
-    {
-        void Initialize(T parameter);
-    }
+    void Initialize(T parameter);
 }

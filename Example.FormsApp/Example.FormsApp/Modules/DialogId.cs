@@ -1,7 +1,6 @@
-namespace Example.FormsApp.Modules
+namespace Example.FormsApp.Modules;
+
+public enum DialogId
 {
-    public enum DialogId
-    {
-        InputNumber
-    }
+    InputNumber
 }

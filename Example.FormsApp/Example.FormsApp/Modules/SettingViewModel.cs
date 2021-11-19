@@ -1,42 +1,41 @@
-namespace Example.FormsApp.Modules
+namespace Example.FormsApp.Modules;
+
+using Smart.Forms.Input;
+using Smart.Navigation;
+
+using XamarinFormsComponents.Dialogs;
+using XamarinFormsComponents.Settings;
+
+public class SettingViewModel : AppViewModelBase
 {
-    using Smart.Forms.Input;
-    using Smart.Navigation;
+    public AsyncCommand BackCommand { get; }
 
-    using XamarinFormsComponents.Dialogs;
-    using XamarinFormsComponents.Settings;
+    public AsyncCommand WriteCommand { get; }
+    public AsyncCommand ReadCommand { get; }
+    public AsyncCommand RemoveCommand { get; }
 
-    public class SettingViewModel : AppViewModelBase
+    public SettingViewModel(
+        ApplicationState applicationState,
+        IDialogs dialogs,
+        ISetting setting)
+        : base(applicationState)
     {
-        public AsyncCommand BackCommand { get; }
+        BackCommand = MakeAsyncCommand(() => Navigator.ForwardAsync(ViewId.Menu));
 
-        public AsyncCommand WriteCommand { get; }
-        public AsyncCommand ReadCommand { get; }
-        public AsyncCommand RemoveCommand { get; }
-
-        public SettingViewModel(
-            ApplicationState applicationState,
-            IDialogs dialogs,
-            ISetting setting)
-            : base(applicationState)
+        WriteCommand = MakeAsyncCommand(async () =>
         {
-            BackCommand = MakeAsyncCommand(() => Navigator.ForwardAsync(ViewId.Menu));
-
-            WriteCommand = MakeAsyncCommand(async () =>
-            {
-                setting.WriteString("Test", "123");
-                await dialogs.Information("Write");
-            });
-            ReadCommand = MakeAsyncCommand(async () =>
-            {
-                var value = setting.ReadString("Test");
-                await dialogs.Information($"Read={value}");
-            });
-            RemoveCommand = MakeAsyncCommand(async () =>
-            {
-                setting.Remove("Test");
-                await dialogs.Information("Remove");
-            });
-        }
+            setting.WriteString("Test", "123");
+            await dialogs.Information("Write");
+        });
+        ReadCommand = MakeAsyncCommand(async () =>
+        {
+            var value = setting.ReadString("Test");
+            await dialogs.Information($"Read={value}");
+        });
+        RemoveCommand = MakeAsyncCommand(async () =>
+        {
+            setting.Remove("Test");
+            await dialogs.Information("Remove");
+        });
     }
 }

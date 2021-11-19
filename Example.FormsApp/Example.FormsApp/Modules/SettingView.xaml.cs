@@ -1,13 +1,12 @@
-namespace Example.FormsApp.Modules
-{
-    using Smart.Navigation.Attributes;
+namespace Example.FormsApp.Modules;
 
-    [View(ViewId.Setting)]
-    public partial class SettingView
+using Smart.Navigation.Attributes;
+
+[View(ViewId.Setting)]
+public partial class SettingView
+{
+    public SettingView()
     {
-        public SettingView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

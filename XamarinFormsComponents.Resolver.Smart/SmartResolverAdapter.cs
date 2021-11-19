@@ -1,35 +1,34 @@
-namespace XamarinFormsComponents
+namespace XamarinFormsComponents;
+
+using System.Diagnostics.CodeAnalysis;
+
+using Smart.Resolver;
+
+public sealed class SmartResolverAdapter : IResolverAdapter
 {
-    using System.Diagnostics.CodeAnalysis;
+    private readonly ResolverConfig config;
 
-    using Smart.Resolver;
-
-    public sealed class SmartResolverAdapter : IResolverAdapter
+    public SmartResolverAdapter(ResolverConfig config)
     {
-        private readonly ResolverConfig config;
+        this.config = config;
+    }
 
-        public SmartResolverAdapter(ResolverConfig config)
-        {
-            this.config = config;
-        }
+    public IResolverAdapter AddComponent<TComponent>()
+    {
+        config.Bind<TComponent>().ToSelf().InSingletonScope();
+        return this;
+    }
 
-        public IResolverAdapter AddComponent<TComponent>()
-        {
-            config.Bind<TComponent>().ToSelf().InSingletonScope();
-            return this;
-        }
+    public IResolverAdapter AddComponent<TComponent, TImplement>()
+        where TImplement : TComponent
+    {
+        config.Bind<TComponent>().To<TImplement>().InSingletonScope();
+        return this;
+    }
 
-        public IResolverAdapter AddComponent<TComponent, TImplement>()
-            where TImplement : TComponent
-        {
-            config.Bind<TComponent>().To<TImplement>().InSingletonScope();
-            return this;
-        }
-
-        public IResolverAdapter AddComponent<TComponent>([DisallowNull] TComponent component)
-        {
-            config.Bind<TComponent>().ToConstant(component).InSingletonScope();
-            return this;
-        }
+    public IResolverAdapter AddComponent<TComponent>([DisallowNull] TComponent component)
+    {
+        config.Bind<TComponent>().ToConstant(component).InSingletonScope();
+        return this;
     }
 }

@@ -1,33 +1,32 @@
-namespace Example.FormsApp
+namespace Example.FormsApp;
+
+using System.Threading.Tasks;
+
+using Example.FormsApp.Shell;
+
+using Smart.ComponentModel;
+using Smart.Forms.ViewModels;
+using Smart.Navigation;
+
+public class MainPageViewModel : ViewModelBase, IShellControl
 {
-    using System.Threading.Tasks;
+    public NotificationValue<string> Title { get; } = new();
 
-    using Example.FormsApp.Shell;
+    public ApplicationState ApplicationState { get; }
 
-    using Smart.ComponentModel;
-    using Smart.Forms.ViewModels;
-    using Smart.Navigation;
+    public INavigator Navigator { get; }
 
-    public class MainPageViewModel : ViewModelBase, IShellControl
+    public MainPageViewModel(
+        ApplicationState applicationState,
+        INavigator navigator)
+        : base(applicationState)
     {
-        public NotificationValue<string> Title { get; } = new();
+        ApplicationState = applicationState;
+        Navigator = navigator;
+    }
 
-        public ApplicationState ApplicationState { get; }
-
-        public INavigator Navigator { get; }
-
-        public MainPageViewModel(
-            ApplicationState applicationState,
-            INavigator navigator)
-            : base(applicationState)
-        {
-            ApplicationState = applicationState;
-            Navigator = navigator;
-        }
-
-        protected virtual Task<bool> OnNotifyBackAsync()
-        {
-            return Task.FromResult(true);
-        }
+    protected virtual Task<bool> OnNotifyBackAsync()
+    {
+        return Task.FromResult(true);
     }
 }

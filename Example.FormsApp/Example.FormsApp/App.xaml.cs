@@ -1,86 +1,85 @@
-namespace Example.FormsApp
+namespace Example.FormsApp;
+
+using System.Reflection;
+
+using Example.FormsApp.Modules;
+
+using Smart.Forms.Resolver;
+using Smart.Navigation;
+using Smart.Resolver;
+
+using XamarinFormsComponents;
+using XamarinFormsComponents.Popup;
+
+public partial class App
 {
-    using System.Reflection;
+    private readonly Navigator navigator;
 
-    using Example.FormsApp.Modules;
-
-    using Smart.Forms.Resolver;
-    using Smart.Navigation;
-    using Smart.Resolver;
-
-    using XamarinFormsComponents;
-    using XamarinFormsComponents.Popup;
-
-    public partial class App
+    public App()
     {
-        private readonly Navigator navigator;
+        InitializeComponent();
 
-        public App()
+        // Config Resolver
+        var resolver = CreateResolver();
+        ResolveProvider.Default.UseSmartResolver(resolver);
+
+        // Config Navigator
+        navigator = new NavigatorConfig()
+            .UseFormsNavigationProvider()
+            .UseResolver(resolver)
+            .UseIdViewMapper(m => m.AutoRegister(Assembly.GetExecutingAssembly().ExportedTypes))
+            .ToNavigator();
+        navigator.Navigated += (_, args) =>
         {
-            InitializeComponent();
+            // for debug
+            System.Diagnostics.Debug.WriteLine(
+                $"Navigated: [{args.Context.FromId}]->[{args.Context.ToId}] : stacked=[{navigator.StackedCount}]");
+        };
 
-            // Config Resolver
-            var resolver = CreateResolver();
-            ResolveProvider.Default.UseSmartResolver(resolver);
+        // Popup Navigator
+        var popupNavigator = resolver.Get<IPopupNavigator>();
+        popupNavigator.AutoRegister(Assembly.GetExecutingAssembly().ExportedTypes);
 
-            // Config Navigator
-            navigator = new NavigatorConfig()
-                .UseFormsNavigationProvider()
-                .UseResolver(resolver)
-                .UseIdViewMapper(m => m.AutoRegister(Assembly.GetExecutingAssembly().ExportedTypes))
-                .ToNavigator();
-            navigator.Navigated += (_, args) =>
-            {
-                // for debug
-                System.Diagnostics.Debug.WriteLine(
-                    $"Navigated: [{args.Context.FromId}]->[{args.Context.ToId}] : stacked=[{navigator.StackedCount}]");
-            };
+        // Show MainWindow
+        MainPage = resolver.Get<MainPage>();
+    }
 
-            // Popup Navigator
-            var popupNavigator = resolver.Get<IPopupNavigator>();
-            popupNavigator.AutoRegister(Assembly.GetExecutingAssembly().ExportedTypes);
+    private SmartResolver CreateResolver()
+    {
+        var config = new ResolverConfig()
+            .UseAutoBinding()
+            .UseArrayBinding()
+            .UseAssignableBinding()
+            .UsePropertyInjector();
 
-            // Show MainWindow
-            MainPage = resolver.Get<MainPage>();
-        }
-
-        private SmartResolver CreateResolver()
+        config.UseXamarinFormsComponents(adapter =>
         {
-            var config = new ResolverConfig()
-                .UseAutoBinding()
-                .UseArrayBinding()
-                .UseAssignableBinding()
-                .UsePropertyInjector();
+            adapter.AddDialogs();
+            adapter.AddPopupNavigator();
+            adapter.AddLocationManager();
+            adapter.AddJsonSerializer();
+            adapter.AddSettings();
+        });
 
-            config.UseXamarinFormsComponents(adapter =>
-            {
-                adapter.AddDialogs();
-                adapter.AddPopupNavigator();
-                adapter.AddLocationManager();
-                adapter.AddJsonSerializer();
-                adapter.AddSettings();
-            });
+        config.Bind<INavigator>().ToMethod(_ => navigator).InSingletonScope();
 
-            config.Bind<INavigator>().ToMethod(_ => navigator).InSingletonScope();
+        config.Bind<ApplicationState>().ToSelf().InSingletonScope();
 
-            config.Bind<ApplicationState>().ToSelf().InSingletonScope();
+        return config.ToResolver();
+    }
 
-            return config.ToResolver();
-        }
+    protected override void OnStart()
+    {
+        navigator.Forward(ViewId.Menu);
+    }
 
-        protected override void OnStart()
-        {
-            navigator.Forward(ViewId.Menu);
-        }
+    protected override void OnSleep()
+    {
+        // Handle when your app sleeps
+    }
 
-        protected override void OnSleep()
-        {
-            // Handle when your app sleeps
-        }
-
-        protected override void OnResume()
-        {
-            // Handle when your app resumes
-        }
+    protected override void OnResume()
+    {
+        // Handle when your app resumes
     }
 }

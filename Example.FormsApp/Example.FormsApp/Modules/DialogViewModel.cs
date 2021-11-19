@@ -1,92 +1,91 @@
-namespace Example.FormsApp.Modules
+namespace Example.FormsApp.Modules;
+
+using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
+
+using Smart.Forms.Input;
+using Smart.Navigation;
+
+using XamarinFormsComponents.Dialogs;
+
+public class DialogViewModel : AppViewModelBase
 {
-    using System.Globalization;
-    using System.Linq;
-    using System.Threading.Tasks;
+    private readonly IDialogs dialogs;
 
-    using Smart.Forms.Input;
-    using Smart.Navigation;
+    public AsyncCommand BackCommand { get; }
 
-    using XamarinFormsComponents.Dialogs;
+    public AsyncCommand ProgressCommand { get; }
+    public AsyncCommand LoadingCommand { get; }
+    public AsyncCommand DateCommand { get; }
+    public AsyncCommand TimeCommand { get; }
+    public AsyncCommand ConfirmCommand { get; }
+    public AsyncCommand SelectCommand { get; }
 
-    public class DialogViewModel : AppViewModelBase
+    public DialogViewModel(
+        ApplicationState applicationState,
+        IDialogs dialogs)
+        : base(applicationState)
     {
-        private readonly IDialogs dialogs;
+        this.dialogs = dialogs;
 
-        public AsyncCommand BackCommand { get; }
+        BackCommand = MakeAsyncCommand(() => Navigator.ForwardAsync(ViewId.Menu));
 
-        public AsyncCommand ProgressCommand { get; }
-        public AsyncCommand LoadingCommand { get; }
-        public AsyncCommand DateCommand { get; }
-        public AsyncCommand TimeCommand { get; }
-        public AsyncCommand ConfirmCommand { get; }
-        public AsyncCommand SelectCommand { get; }
+        ProgressCommand = MakeAsyncCommand(Progress);
+        LoadingCommand = MakeAsyncCommand(Loading);
+        DateCommand = MakeAsyncCommand(Date);
+        TimeCommand = MakeAsyncCommand(Time);
+        ConfirmCommand = MakeAsyncCommand(Confirm);
+        SelectCommand = MakeAsyncCommand(Select);
+    }
 
-        public DialogViewModel(
-            ApplicationState applicationState,
-            IDialogs dialogs)
-            : base(applicationState)
+    private async Task Progress()
+    {
+        using var progress = dialogs.Progress("Test");
+        for (var i = 0; i < 100; i++)
         {
-            this.dialogs = dialogs;
+            await Task.Delay(50);
 
-            BackCommand = MakeAsyncCommand(() => Navigator.ForwardAsync(ViewId.Menu));
-
-            ProgressCommand = MakeAsyncCommand(Progress);
-            LoadingCommand = MakeAsyncCommand(Loading);
-            DateCommand = MakeAsyncCommand(Date);
-            TimeCommand = MakeAsyncCommand(Time);
-            ConfirmCommand = MakeAsyncCommand(Confirm);
-            SelectCommand = MakeAsyncCommand(Select);
+            progress.Update(i + 1);
         }
+    }
 
-        private async Task Progress()
+    private async Task Loading()
+    {
+        using var _ = dialogs.Loading("Test");
+        await Task.Delay(3000);
+    }
+
+    private async Task Date()
+    {
+        var result = await dialogs.Date("Test");
+        if (result.Ok)
         {
-            using var progress = dialogs.Progress("Test");
-            for (var i = 0; i < 100; i++)
-            {
-                await Task.Delay(50);
-
-                progress.Update(i + 1);
-            }
+            await dialogs.Information(result.Value.ToString("yyyy/MM/dd", CultureInfo.InvariantCulture));
         }
+    }
 
-        private async Task Loading()
+    private async Task Time()
+    {
+        var result = await dialogs.Time("Test");
+        if (result.Ok)
         {
-            using var _ = dialogs.Loading("Test");
-            await Task.Delay(3000);
+            await dialogs.Information(result.Value.ToString(@"hh\:mm", CultureInfo.InvariantCulture));
         }
+    }
 
-        private async Task Date()
-        {
-            var result = await dialogs.Date("Test");
-            if (result.Ok)
-            {
-                await dialogs.Information(result.Value.ToString("yyyy/MM/dd", CultureInfo.InvariantCulture));
-            }
-        }
+    private async Task Confirm()
+    {
+        var result = await dialogs.Confirm("○○しますか？", "確認", "はい", "いいえ");
+        await dialogs.Information(result.ToString(CultureInfo.InvariantCulture));
+    }
 
-        private async Task Time()
+    private async Task Select()
+    {
+        var result = await dialogs.Select(Enumerable.Range(1, 3), x => $"Item-{x}", "選択");
+        if (result.Selected)
         {
-            var result = await dialogs.Time("Test");
-            if (result.Ok)
-            {
-                await dialogs.Information(result.Value.ToString(@"hh\:mm", CultureInfo.InvariantCulture));
-            }
-        }
-
-        private async Task Confirm()
-        {
-            var result = await dialogs.Confirm("○○しますか？", "確認", "はい", "いいえ");
-            await dialogs.Information(result.ToString(CultureInfo.InvariantCulture));
-        }
-
-        private async Task Select()
-        {
-            var result = await dialogs.Select(Enumerable.Range(1, 3), x => $"Item-{x}", "選択");
-            if (result.Selected)
-            {
-                await dialogs.Information($"Selected={result.Value}");
-            }
+            await dialogs.Information($"Selected={result.Value}");
         }
     }
 }

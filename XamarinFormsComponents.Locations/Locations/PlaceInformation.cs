@@ -1,34 +1,33 @@
-namespace XamarinFormsComponents.Locations
+namespace XamarinFormsComponents.Locations;
+
+using Xamarin.Essentials;
+
+public class PlaceInformation
 {
-    using Xamarin.Essentials;
+    private readonly Placemark placemark;
 
-    public class PlaceInformation
+    public PlaceInformation(Placemark placemark)
     {
-        private readonly Placemark placemark;
-
-        public PlaceInformation(Placemark placemark)
-        {
-            this.placemark = placemark;
-        }
-
-        public string CountryCode => placemark.CountryCode;
-
-        public string CountryName => placemark.CountryName;
-
-        public string FeatureName => placemark.FeatureName;
-
-        public string PostalCode => placemark.PostalCode;
-
-        public string AdminArea => placemark.AdminArea;
-
-        public string Locality => placemark.Locality;
-
-        public string Thoroughfare => placemark.Thoroughfare;
-
-        public string SubAdminArea => placemark.SubAdminArea;
-
-        public string SubLocality => placemark.SubLocality;
-
-        public string SubThoroughfare => placemark.SubThoroughfare;
+        this.placemark = placemark;
     }
+
+    public string CountryCode => placemark.CountryCode;
+
+    public string CountryName => placemark.CountryName;
+
+    public string FeatureName => placemark.FeatureName;
+
+    public string PostalCode => placemark.PostalCode;
+
+    public string AdminArea => placemark.AdminArea;
+
+    public string Locality => placemark.Locality;
+
+    public string Thoroughfare => placemark.Thoroughfare;
+
+    public string SubAdminArea => placemark.SubAdminArea;
+
+    public string SubLocality => placemark.SubLocality;
+
+    public string SubThoroughfare => placemark.SubThoroughfare;
 }

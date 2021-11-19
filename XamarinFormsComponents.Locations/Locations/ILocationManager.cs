@@ -1,23 +1,22 @@
-namespace XamarinFormsComponents.Locations
+namespace XamarinFormsComponents.Locations;
+
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+
+public interface ILocationManager
 {
-    using System;
-    using System.Threading;
-    using System.Threading.Tasks;
+    event EventHandler<LocationEventArgs> LocationChanged;
 
-    public interface ILocationManager
-    {
-        event EventHandler<LocationEventArgs> LocationChanged;
+    int Interval { get; set; }
 
-        int Interval { get; set; }
+    void Start();
 
-        void Start();
+    void Stop();
 
-        void Stop();
+    ValueTask<LocationInformation?> GetLastLocationAsync();
 
-        ValueTask<LocationInformation?> GetLastLocationAsync();
+    ValueTask<LocationInformation?> GetLocationAsync(CancellationTokenSource cancellationTokenSource);
 
-        ValueTask<LocationInformation?> GetLocationAsync(CancellationTokenSource cancellationTokenSource);
-
-        ValueTask<PlaceInformation[]> GetPlaceInformationAsync(double latitude, double longitude);
-    }
+    ValueTask<PlaceInformation[]> GetPlaceInformationAsync(double latitude, double longitude);
 }

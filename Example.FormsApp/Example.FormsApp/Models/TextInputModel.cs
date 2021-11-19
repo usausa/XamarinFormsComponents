@@ -1,38 +1,37 @@
-namespace Example.FormsApp.Models
+namespace Example.FormsApp.Models;
+
+using Smart.ComponentModel;
+
+public class TextInputModel : NotificationObject
 {
-    using Smart.ComponentModel;
+    private string text = string.Empty;
 
-    public class TextInputModel : NotificationObject
+    public int MaxLength { get; set; }
+
+    public string Text
     {
-        private string text = string.Empty;
+        get => text;
+        set => SetProperty(ref text, value);
+    }
 
-        public int MaxLength { get; set; }
+    public void Clear()
+    {
+        Text = string.Empty;
+    }
 
-        public string Text
+    public void Pop()
+    {
+        if (text.Length > 0)
         {
-            get => text;
-            set => SetProperty(ref text, value);
+            Text = text[..^1];
         }
+    }
 
-        public void Clear()
+    public void Push(string key)
+    {
+        if (text.Length + key.Length <= MaxLength)
         {
-            Text = string.Empty;
-        }
-
-        public void Pop()
-        {
-            if (text.Length > 0)
-            {
-                Text = text[..^1];
-            }
-        }
-
-        public void Push(string key)
-        {
-            if (text.Length + key.Length <= MaxLength)
-            {
-                Text = text + key;
-            }
+            Text = text + key;
         }
     }
 }

@@ -1,13 +1,12 @@
-namespace XamarinFormsComponents
-{
-    using XamarinFormsComponents.Settings;
+namespace XamarinFormsComponents;
 
-    public static class ResolverAdapterExtensions
+using XamarinFormsComponents.Settings;
+
+public static class ResolverAdapterExtensions
+{
+    public static IResolverAdapter AddSettings(this IResolverAdapter adapter)
     {
-        public static IResolverAdapter AddSettings(this IResolverAdapter adapter)
-        {
-            adapter.AddComponent<ISetting, Setting>();
-            return adapter;
-        }
+        adapter.AddComponent<ISetting, Setting>();
+        return adapter;
     }
 }

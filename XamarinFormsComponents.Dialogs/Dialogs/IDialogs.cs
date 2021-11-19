@@ -1,25 +1,24 @@
-namespace XamarinFormsComponents.Dialogs
+namespace XamarinFormsComponents.Dialogs;
+
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+public interface IDialogs
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+    ValueTask<bool> Confirm(string message, string? title = null, string acceptButton = "OK", string cancelButton = "Cancel");
 
-    public interface IDialogs
-    {
-        ValueTask<bool> Confirm(string message, string? title = null, string acceptButton = "OK", string cancelButton = "Cancel");
+    ValueTask Information(string message, string? title = null, string cancelButton = "OK");
 
-        ValueTask Information(string message, string? title = null, string cancelButton = "OK");
+    ValueTask<SelectResult<string>> Select(IEnumerable<string> items, string? title = null, string? cancel = null);
 
-        ValueTask<SelectResult<string>> Select(IEnumerable<string> items, string? title = null, string? cancel = null);
+    ValueTask<SelectResult<T>> Select<T>(IEnumerable<T> items, Func<T, string> formatter, string? title = null, string? cancel = null);
 
-        ValueTask<SelectResult<T>> Select<T>(IEnumerable<T> items, Func<T, string> formatter, string? title = null, string? cancel = null);
+    IProgress Progress(string? title = null);
 
-        IProgress Progress(string? title = null);
+    IProgress Loading(string? title = null);
 
-        IProgress Loading(string? title = null);
+    ValueTask<DateDialogResult> Date(string? title = null, DateTime? value = null, DateTime? minDate = null, DateTime? maxDate = null);
 
-        ValueTask<DateDialogResult> Date(string? title = null, DateTime? value = null, DateTime? minDate = null, DateTime? maxDate = null);
-
-        ValueTask<TimeDialogResult> Time(string? title = null, TimeSpan? value = null);
-    }
+    ValueTask<TimeDialogResult> Time(string? title = null, TimeSpan? value = null);
 }

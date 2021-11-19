@@ -1,17 +1,16 @@
-namespace XamarinFormsComponents.Dialogs
+namespace XamarinFormsComponents.Dialogs;
+
+using System;
+
+public class TimeDialogResult
 {
-    using System;
+    public bool Ok { get; }
 
-    public class TimeDialogResult
+    public TimeSpan Value { get; }
+
+    public TimeDialogResult(bool ok, TimeSpan value)
     {
-        public bool Ok { get; }
-
-        public TimeSpan Value { get; }
-
-        public TimeDialogResult(bool ok, TimeSpan value)
-        {
-            Ok = ok;
-            Value = value;
-        }
+        Ok = ok;
+        Value = value;
     }
 }

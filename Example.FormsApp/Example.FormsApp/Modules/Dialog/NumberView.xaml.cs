@@ -1,15 +1,14 @@
-namespace Example.FormsApp.Modules.Dialog
+namespace Example.FormsApp.Modules.Dialog;
+
+using Example.FormsApp.Modules;
+
+using XamarinFormsComponents.Popup;
+
+[Popup(DialogId.InputNumber)]
+public partial class NumberView
 {
-    using Example.FormsApp.Modules;
-
-    using XamarinFormsComponents.Popup;
-
-    [Popup(DialogId.InputNumber)]
-    public partial class NumberView
+    public NumberView()
     {
-        public NumberView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

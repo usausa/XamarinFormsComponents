@@ -1,13 +1,12 @@
-namespace XamarinFormsComponents
-{
-    using XamarinFormsComponents.Locations;
+namespace XamarinFormsComponents;
 
-    public static class ResolverAdapterExtensions
+using XamarinFormsComponents.Locations;
+
+public static class ResolverAdapterExtensions
+{
+    public static IResolverAdapter AddLocationManager(this IResolverAdapter adapter)
     {
-        public static IResolverAdapter AddLocationManager(this IResolverAdapter adapter)
-        {
-            adapter.AddComponent<ILocationManager, LocationManager>();
-            return adapter;
-        }
+        adapter.AddComponent<ILocationManager, LocationManager>();
+        return adapter;
     }
 }

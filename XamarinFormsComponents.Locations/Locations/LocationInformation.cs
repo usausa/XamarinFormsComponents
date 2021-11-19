@@ -1,20 +1,19 @@
-namespace XamarinFormsComponents.Locations
+namespace XamarinFormsComponents.Locations;
+
+using System;
+
+public class LocationInformation
 {
-    using System;
+    public double Latitude { get; }
 
-    public class LocationInformation
+    public double Longitude { get; }
+
+    public DateTimeOffset Timestamp { get; }
+
+    public LocationInformation(double latitude, double longitude, DateTimeOffset timestamp)
     {
-        public double Latitude { get; }
-
-        public double Longitude { get; }
-
-        public DateTimeOffset Timestamp { get; }
-
-        public LocationInformation(double latitude, double longitude, DateTimeOffset timestamp)
-        {
-            Latitude = latitude;
-            Longitude = longitude;
-            Timestamp = timestamp;
-        }
+        Latitude = latitude;
+        Longitude = longitude;
+        Timestamp = timestamp;
     }
 }

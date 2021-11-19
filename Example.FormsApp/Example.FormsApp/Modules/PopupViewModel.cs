@@ -1,45 +1,44 @@
-namespace Example.FormsApp.Modules
+namespace Example.FormsApp.Modules;
+
+using System;
+using System.Threading.Tasks;
+
+using Smart.Forms.Input;
+using Smart.Navigation;
+
+using XamarinFormsComponents.Dialogs;
+using XamarinFormsComponents.Popup;
+
+public class PopupViewModel : AppViewModelBase
 {
-    using System;
-    using System.Threading.Tasks;
+    private readonly IDialogs dialogs;
 
-    using Smart.Forms.Input;
-    using Smart.Navigation;
+    private readonly IPopupNavigator popupNavigator;
 
-    using XamarinFormsComponents.Dialogs;
-    using XamarinFormsComponents.Popup;
+    public AsyncCommand BackCommand { get; }
 
-    public class PopupViewModel : AppViewModelBase
+    public AsyncCommand NumberCommand { get; }
+
+    public PopupViewModel(
+        ApplicationState applicationState,
+        IDialogs dialogs,
+        IPopupNavigator popupNavigator)
+        : base(applicationState)
     {
-        private readonly IDialogs dialogs;
+        this.dialogs = dialogs;
+        this.popupNavigator = popupNavigator;
 
-        private readonly IPopupNavigator popupNavigator;
+        BackCommand = MakeAsyncCommand(() => Navigator.ForwardAsync(ViewId.Menu));
 
-        public AsyncCommand BackCommand { get; }
+        NumberCommand = MakeAsyncCommand(Number);
+    }
 
-        public AsyncCommand NumberCommand { get; }
-
-        public PopupViewModel(
-            ApplicationState applicationState,
-            IDialogs dialogs,
-            IPopupNavigator popupNavigator)
-            : base(applicationState)
+    private async Task Number()
+    {
+        var result = await popupNavigator.InputNumberAsync("Test", "123", 5);
+        if (!String.IsNullOrEmpty(result))
         {
-            this.dialogs = dialogs;
-            this.popupNavigator = popupNavigator;
-
-            BackCommand = MakeAsyncCommand(() => Navigator.ForwardAsync(ViewId.Menu));
-
-            NumberCommand = MakeAsyncCommand(Number);
-        }
-
-        private async Task Number()
-        {
-            var result = await popupNavigator.InputNumberAsync("Test", "123", 5);
-            if (!String.IsNullOrEmpty(result))
-            {
-                await dialogs.Information(result, "Result");
-            }
+            await dialogs.Information(result, "Result");
         }
     }
 }

@@ -1,35 +1,34 @@
-namespace Example.FormsApp.Modules
+namespace Example.FormsApp.Modules;
+
+using System;
+
+using Example.FormsApp.Models;
+
+using Smart.Forms.Input;
+using Smart.Navigation;
+
+using XamarinFormsComponents.Dialogs;
+using XamarinFormsComponents.Serializers;
+
+public class SerializerViewModel : AppViewModelBase
 {
-    using System;
+    public AsyncCommand BackCommand { get; }
 
-    using Example.FormsApp.Models;
+    public AsyncCommand SerializeCommand { get; }
 
-    using Smart.Forms.Input;
-    using Smart.Navigation;
-
-    using XamarinFormsComponents.Dialogs;
-    using XamarinFormsComponents.Serializers;
-
-    public class SerializerViewModel : AppViewModelBase
+    public SerializerViewModel(
+        ApplicationState applicationState,
+        IDialogs dialogs,
+        ISerializer serializer)
+        : base(applicationState)
     {
-        public AsyncCommand BackCommand { get; }
+        BackCommand = MakeAsyncCommand(() => Navigator.ForwardAsync(ViewId.Menu));
 
-        public AsyncCommand SerializeCommand { get; }
-
-        public SerializerViewModel(
-            ApplicationState applicationState,
-            IDialogs dialogs,
-            ISerializer serializer)
-            : base(applicationState)
+        SerializeCommand = MakeAsyncCommand(async () =>
         {
-            BackCommand = MakeAsyncCommand(() => Navigator.ForwardAsync(ViewId.Menu));
-
-            SerializeCommand = MakeAsyncCommand(async () =>
-            {
-                var obj = new SerializeObject { IntValue = 100, StringValue = "abc", BoolValue = true, DateTimeValue = DateTime.Now };
-                var text = serializer.Serialize(obj);
-                await dialogs.Information(text);
-            });
-        }
+            var obj = new SerializeObject { IntValue = 100, StringValue = "abc", BoolValue = true, DateTimeValue = DateTime.Now };
+            var text = serializer.Serialize(obj);
+            await dialogs.Information(text);
+        });
     }
 }

@@ -1,40 +1,39 @@
-namespace Example.FormsApp.Modules
+namespace Example.FormsApp.Modules;
+
+using System.Diagnostics.CodeAnalysis;
+
+using Smart.Forms.ViewModels;
+using Smart.Navigation;
+
+public class AppViewModelBase : ViewModelBase, INavigatorAware, INavigationEventSupport
 {
-    using System.Diagnostics.CodeAnalysis;
+    [AllowNull]
+    public INavigator Navigator { get; set; }
 
-    using Smart.Forms.ViewModels;
-    using Smart.Navigation;
+    public ApplicationState ApplicationState { get; }
 
-    public class AppViewModelBase : ViewModelBase, INavigatorAware, INavigationEventSupport
+    protected override void Dispose(bool disposing)
     {
-        [AllowNull]
-        public INavigator Navigator { get; set; }
+        base.Dispose(disposing);
 
-        public ApplicationState ApplicationState { get; }
+        System.Diagnostics.Debug.WriteLine($"{GetType()} is Disposed");
+    }
 
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
+    public AppViewModelBase(ApplicationState applicationState)
+        : base(applicationState)
+    {
+        ApplicationState = applicationState;
+    }
 
-            System.Diagnostics.Debug.WriteLine($"{GetType()} is Disposed");
-        }
+    public virtual void OnNavigatingFrom(INavigationContext context)
+    {
+    }
 
-        public AppViewModelBase(ApplicationState applicationState)
-            : base(applicationState)
-        {
-            ApplicationState = applicationState;
-        }
+    public virtual void OnNavigatingTo(INavigationContext context)
+    {
+    }
 
-        public virtual void OnNavigatingFrom(INavigationContext context)
-        {
-        }
-
-        public virtual void OnNavigatingTo(INavigationContext context)
-        {
-        }
-
-        public virtual void OnNavigatedTo(INavigationContext context)
-        {
-        }
+    public virtual void OnNavigatedTo(INavigationContext context)
+    {
     }
 }

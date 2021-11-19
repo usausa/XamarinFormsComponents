@@ -1,9 +1,8 @@
-namespace Example.FormsApp.Shell
-{
-    using Smart.ComponentModel;
+namespace Example.FormsApp.Shell;
 
-    public interface IShellControl
-    {
-        NotificationValue<string> Title { get; }
-    }
+using Smart.ComponentModel;
+
+public interface IShellControl
+{
+    NotificationValue<string> Title { get; }
 }

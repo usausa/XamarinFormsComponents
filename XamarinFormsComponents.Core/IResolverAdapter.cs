@@ -1,14 +1,13 @@
-namespace XamarinFormsComponents
+namespace XamarinFormsComponents;
+
+using System.Diagnostics.CodeAnalysis;
+
+public interface IResolverAdapter
 {
-    using System.Diagnostics.CodeAnalysis;
+    IResolverAdapter AddComponent<TComponent>();
 
-    public interface IResolverAdapter
-    {
-        IResolverAdapter AddComponent<TComponent>();
+    IResolverAdapter AddComponent<TComponent, TImplement>()
+        where TImplement : TComponent;
 
-        IResolverAdapter AddComponent<TComponent, TImplement>()
-            where TImplement : TComponent;
-
-        IResolverAdapter AddComponent<TComponent>([DisallowNull] TComponent component);
-    }
+    IResolverAdapter AddComponent<TComponent>([DisallowNull] TComponent component);
 }

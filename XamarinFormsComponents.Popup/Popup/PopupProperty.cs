@@ -1,23 +1,22 @@
-namespace XamarinFormsComponents.Popup
+namespace XamarinFormsComponents.Popup;
+
+using Xamarin.Forms;
+
+public static class PopupProperty
 {
-    using Xamarin.Forms;
+    public static readonly BindableProperty ThicknessProperty = BindableProperty.Create(
+        "Thickness",
+        typeof(Thickness),
+        typeof(PopupProperty),
+        default(Thickness));
 
-    public static class PopupProperty
+    public static Thickness GetThickness(BindableObject view)
     {
-        public static readonly BindableProperty ThicknessProperty = BindableProperty.Create(
-            "Thickness",
-            typeof(Thickness),
-            typeof(PopupProperty),
-            default(Thickness));
+        return (Thickness)view.GetValue(ThicknessProperty);
+    }
 
-        public static Thickness GetThickness(BindableObject view)
-        {
-            return (Thickness)view.GetValue(ThicknessProperty);
-        }
-
-        public static void SetThickness(BindableObject view, Thickness value)
-        {
-            view.SetValue(ThicknessProperty, value);
-        }
+    public static void SetThickness(BindableObject view, Thickness value)
+    {
+        view.SetValue(ThicknessProperty, value);
     }
 }
