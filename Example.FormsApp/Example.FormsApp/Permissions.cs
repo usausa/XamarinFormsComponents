@@ -19,7 +19,7 @@ public static class Permissions
 
     public static async ValueTask<bool> RequestPermissions()
     {
-        var status = await Xamarin.Essentials.Permissions.RequestAsync<Xamarin.Essentials.Permissions.LocationAlways>();
+        var status = await Xamarin.Essentials.Permissions.RequestAsync<Xamarin.Essentials.Permissions.LocationWhenInUse>();
         if (status != PermissionStatus.Granted)
         {
             return false;
