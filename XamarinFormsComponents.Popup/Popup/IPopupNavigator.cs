@@ -1,8 +1,5 @@
 namespace XamarinFormsComponents.Popup;
 
-using System;
-using System.Threading.Tasks;
-
 public interface IPopupNavigator
 {
     void Register(object id, Type type);

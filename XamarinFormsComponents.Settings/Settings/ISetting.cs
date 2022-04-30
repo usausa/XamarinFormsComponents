@@ -1,7 +1,5 @@
 namespace XamarinFormsComponents.Settings;
 
-using System;
-
 public interface ISetting
 {
     void Remove(string key);

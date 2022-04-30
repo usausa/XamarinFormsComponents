@@ -1,7 +1,5 @@
 namespace XamarinFormsComponents.Dialogs;
 
-using System;
-
 public class DateDialogResult
 {
     public bool Ok { get; }

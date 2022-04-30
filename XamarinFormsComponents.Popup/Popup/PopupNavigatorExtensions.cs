@@ -1,7 +1,5 @@
 namespace XamarinFormsComponents.Popup;
 
-using System;
-using System.Collections.Generic;
 using System.Reflection;
 
 public static class PopupNavigatorExtensions

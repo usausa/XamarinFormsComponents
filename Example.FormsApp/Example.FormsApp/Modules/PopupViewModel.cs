@@ -1,8 +1,5 @@
 namespace Example.FormsApp.Modules;
 
-using System;
-using System.Threading.Tasks;
-
 using Smart.Forms.Input;
 using Smart.Navigation;
 

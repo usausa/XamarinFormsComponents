@@ -1,7 +1,5 @@
 namespace XamarinFormsComponents.Settings;
 
-using System;
-
 using Xamarin.Essentials;
 
 public class Setting : ISetting

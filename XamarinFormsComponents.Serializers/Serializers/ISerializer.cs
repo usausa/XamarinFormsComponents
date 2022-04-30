@@ -1,9 +1,5 @@
 namespace XamarinFormsComponents.Serializers;
 
-using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
-
 public interface ISerializer
 {
     ValueTask SerializeAsync(Stream stream, object obj, CancellationToken cancel = default);

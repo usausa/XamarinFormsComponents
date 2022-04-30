@@ -1,9 +1,6 @@
 namespace XamarinFormsComponents.Serializers;
 
-using System.IO;
 using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
 
 public sealed class JsonSerializer : ISerializer
 {

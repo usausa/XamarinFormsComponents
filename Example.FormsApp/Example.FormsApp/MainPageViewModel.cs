@@ -1,7 +1,5 @@
 namespace Example.FormsApp;
 
-using System.Threading.Tasks;
-
 using Example.FormsApp.Shell;
 
 using Smart.ComponentModel;

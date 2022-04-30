@@ -1,9 +1,5 @@
 namespace XamarinFormsComponents.Dialogs;
 
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
 public interface IDialogs
 {
     ValueTask<bool> Confirm(string message, string? title = null, string acceptButton = "OK", string cancelButton = "Cancel");

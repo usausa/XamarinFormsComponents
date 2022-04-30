@@ -1,7 +1,5 @@
 namespace Example.FormsApp.Modules;
 
-using System.Threading.Tasks;
-
 using Example.FormsApp.Models;
 
 using XamarinFormsComponents.Popup;

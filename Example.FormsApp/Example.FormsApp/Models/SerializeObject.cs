@@ -1,7 +1,5 @@
 namespace Example.FormsApp.Models;
 
-using System;
-
 public class SerializeObject
 {
     public int IntValue { get; set; }

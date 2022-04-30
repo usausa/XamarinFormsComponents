@@ -1,7 +1,5 @@
 namespace Example.FormsApp;
 
-using System.Threading.Tasks;
-
 using Xamarin.Essentials;
 
 public static class Permissions

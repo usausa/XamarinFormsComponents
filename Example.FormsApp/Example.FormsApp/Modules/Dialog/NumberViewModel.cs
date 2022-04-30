@@ -1,7 +1,5 @@
 namespace Example.FormsApp.Modules.Dialog;
 
-using System.Threading.Tasks;
-
 using Example.FormsApp.Models;
 
 using Smart.ComponentModel;

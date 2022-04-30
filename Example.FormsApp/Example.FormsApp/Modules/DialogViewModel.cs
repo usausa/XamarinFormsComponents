@@ -1,8 +1,6 @@
 namespace Example.FormsApp.Modules;
 
 using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 
 using Smart.Forms.Input;
 using Smart.Navigation;

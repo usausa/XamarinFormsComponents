@@ -1,8 +1,5 @@
 namespace XamarinFormsComponents.Dialogs;
 
-using System;
-using System.Threading.Tasks;
-
 public static class DialogsExtensions
 {
     public static void Progress(this IDialogs dialog, Action<IProgress> action)

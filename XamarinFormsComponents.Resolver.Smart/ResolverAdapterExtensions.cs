@@ -1,7 +1,5 @@
 namespace XamarinFormsComponents;
 
-using System;
-
 using Smart.Resolver;
 
 public static class ResolverAdapterExtensions

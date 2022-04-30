@@ -1,7 +1,5 @@
 namespace XamarinFormsComponents.Locations;
 
-using System;
-
 public sealed class LocationEventArgs : EventArgs
 {
     public LocationInformation Location { get; }

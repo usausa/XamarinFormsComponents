@@ -1,7 +1,5 @@
 namespace XamarinFormsComponents.Locations;
 
-using System;
-
 public class LocationInformation
 {
     public double Latitude { get; }

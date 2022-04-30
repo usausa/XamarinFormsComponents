@@ -1,6 +1,5 @@
 namespace XamarinFormsComponents;
 
-using System;
 using System.Text.Json;
 
 using XamarinFormsComponents.Serializers;
