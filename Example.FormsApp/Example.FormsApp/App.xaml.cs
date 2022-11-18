@@ -21,12 +21,12 @@ public partial class App
 
         // Config Resolver
         var resolver = CreateResolver();
-        ResolveProvider.Default.UseSmartResolver(resolver);
+        ResolveProvider.Default.Provider = resolver;
 
         // Config Navigator
         navigator = new NavigatorConfig()
             .UseFormsNavigationProvider()
-            .UseResolver(resolver)
+            .UseServiceProvider(resolver)
             .UseIdViewMapper(m => m.AutoRegister(Assembly.GetExecutingAssembly().ExportedTypes))
             .ToNavigator();
         navigator.Navigated += (_, args) =>
