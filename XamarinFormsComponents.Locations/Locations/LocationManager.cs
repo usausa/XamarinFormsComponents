@@ -4,8 +4,7 @@ using System.Diagnostics;
 
 using Xamarin.Essentials;
 
-[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable", Justification = "Ignore")]
-public sealed class LocationManager : ILocationManager
+public sealed class LocationManager : ILocationManager, IDisposable
 {
     public event EventHandler<LocationEventArgs>? LocationChanged;
 
@@ -14,6 +13,11 @@ public sealed class LocationManager : ILocationManager
     private CancellationTokenSource? cts;
 
     public int Interval { get; set; } = 15000;
+
+    public void Dispose()
+    {
+        cts?.Dispose();
+    }
 
     public void Start()
     {
@@ -45,9 +49,9 @@ public sealed class LocationManager : ILocationManager
         }
     }
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Ignore")]
     private async ValueTask GetLocationLoop(CancellationTokenSource cancellationTokenSource)
     {
+#pragma warning disable CA1031
         try
         {
             while (!cancellationTokenSource.IsCancellationRequested)
@@ -66,11 +70,12 @@ public sealed class LocationManager : ILocationManager
         {
             Trace.WriteLine(e);
         }
+#pragma warning restore CA1031
     }
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Ignore")]
     public async ValueTask<LocationInformation?> GetLastLocationAsync()
     {
+#pragma warning disable CA1031
         try
         {
             var location = await Geolocation.GetLastKnownLocationAsync().ConfigureAwait(false);
@@ -83,13 +88,14 @@ public sealed class LocationManager : ILocationManager
         {
             Trace.WriteLine(ex);
         }
+#pragma warning restore CA1031
 
         return null;
     }
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Ignore")]
     public async ValueTask<LocationInformation?> GetLocationAsync(CancellationTokenSource cancellationTokenSource)
     {
+#pragma warning disable CA1031
         try
         {
             var request = new GeolocationRequest(GeolocationAccuracy.Medium);
@@ -103,13 +109,14 @@ public sealed class LocationManager : ILocationManager
         {
             Trace.WriteLine(ex);
         }
+#pragma warning restore CA1031
 
         return null;
     }
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Ignore")]
     public async ValueTask<PlaceInformation[]> GetPlaceInformationAsync(double latitude, double longitude)
     {
+#pragma warning disable CA1031
         try
         {
             var placemarks = await Geocoding.GetPlacemarksAsync(latitude, longitude).ConfigureAwait(false);
@@ -119,6 +126,7 @@ public sealed class LocationManager : ILocationManager
         {
             Trace.WriteLine(ex);
         }
+#pragma warning restore CA1031
 
         return Array.Empty<PlaceInformation>();
     }
