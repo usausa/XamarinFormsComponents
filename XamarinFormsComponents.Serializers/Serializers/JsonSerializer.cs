@@ -29,9 +29,9 @@ public sealed class JsonSerializer : ISerializer
         return System.Text.Json.JsonSerializer.Serialize(obj, obj.GetType(), options);
     }
 
-    public async ValueTask<T?> DeserializeAsync<T>(Stream stream, CancellationToken cancel = default)
+    public ValueTask<T?> DeserializeAsync<T>(Stream stream, CancellationToken cancel = default)
     {
-        return await System.Text.Json.JsonSerializer.DeserializeAsync<T>(stream, options, cancel).ConfigureAwait(false);
+        return System.Text.Json.JsonSerializer.DeserializeAsync<T>(stream, options, cancel);
     }
 
     public T? Deserialize<T>(string json)
