@@ -39,7 +39,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XamarinFormsComponents.Loca
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.FormsApp", "Example.FormsApp\Example.FormsApp\Example.FormsApp.csproj", "{BFE34B86-75A7-4D8C-81A5-22EB1E4AC3DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.FormsApp.Android", "Example.FormsApp\Example.FormsApp.Android\Example.FormsApp.Android.csproj", "{17E92F4C-0309-4302-9625-711A43D3437F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.FormsApp.Android", "Example.FormsApp\Example.FormsApp.Android\Example.FormsApp.Android.csproj", "{EF6197F8-7A4C-451A-B192-F4D59D10DCCE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,11 +79,11 @@ Global
 		{BFE34B86-75A7-4D8C-81A5-22EB1E4AC3DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFE34B86-75A7-4D8C-81A5-22EB1E4AC3DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFE34B86-75A7-4D8C-81A5-22EB1E4AC3DE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{17E92F4C-0309-4302-9625-711A43D3437F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{17E92F4C-0309-4302-9625-711A43D3437F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{17E92F4C-0309-4302-9625-711A43D3437F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{17E92F4C-0309-4302-9625-711A43D3437F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{17E92F4C-0309-4302-9625-711A43D3437F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF6197F8-7A4C-451A-B192-F4D59D10DCCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF6197F8-7A4C-451A-B192-F4D59D10DCCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF6197F8-7A4C-451A-B192-F4D59D10DCCE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{EF6197F8-7A4C-451A-B192-F4D59D10DCCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF6197F8-7A4C-451A-B192-F4D59D10DCCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,7 +97,7 @@ Global
 		{CC81D3C8-D231-406E-A7F1-AF8F07E5A521} = {11C63A44-6A07-42C7-AF29-74B5CDBB8676}
 		{A3248E42-E64A-41F7-9B67-6A4E801F06E7} = {11C63A44-6A07-42C7-AF29-74B5CDBB8676}
 		{BFE34B86-75A7-4D8C-81A5-22EB1E4AC3DE} = {8788AD91-DF74-4004-88B9-B84A57A8210A}
-		{17E92F4C-0309-4302-9625-711A43D3437F} = {8788AD91-DF74-4004-88B9-B84A57A8210A}
+		{EF6197F8-7A4C-451A-B192-F4D59D10DCCE} = {8788AD91-DF74-4004-88B9-B84A57A8210A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {99EDB8FB-D670-42BA-97A6-A0ADF2BA3AF5}

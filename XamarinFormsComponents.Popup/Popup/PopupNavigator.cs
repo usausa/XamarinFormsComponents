@@ -45,7 +45,7 @@ public sealed class PopupNavigator : IPopupNavigator
         {
             var page = (PopupPage)sender;
 
-            if (((PopupPage)sender).Content.BindingContext is IPopupResult<TResult> result)
+            if (page.Content.BindingContext is IPopupResult<TResult> result)
             {
                 cts.SetResult(result.Result);
             }
@@ -56,8 +56,8 @@ public sealed class PopupNavigator : IPopupNavigator
 
             Cleanup(page);
             (sender as IDisposable)?.Dispose();
-            (page.BindingContext as IDisposable)?.Dispose();
-            page.BindingContext = null;
+            (page.Content.BindingContext as IDisposable)?.Dispose();
+            page.Content.BindingContext = null;
         };
 
         await PopupNavigation.Instance.PushAsync(popup, false).ConfigureAwait(false);
@@ -107,8 +107,8 @@ public sealed class PopupNavigator : IPopupNavigator
 
             Cleanup(page);
             (sender as IDisposable)?.Dispose();
-            (page.BindingContext as IDisposable)?.Dispose();
-            page.BindingContext = null;
+            (page.Content.BindingContext as IDisposable)?.Dispose();
+            page.Content.BindingContext = null;
         };
 
         await PopupNavigation.Instance.PushAsync(popup, false).ConfigureAwait(false);
@@ -141,8 +141,8 @@ public sealed class PopupNavigator : IPopupNavigator
 
             Cleanup(page);
             (sender as IDisposable)?.Dispose();
-            (page.BindingContext as IDisposable)?.Dispose();
-            page.BindingContext = null;
+            (page.Content.BindingContext as IDisposable)?.Dispose();
+            page.Content.BindingContext = null;
         };
 
         await PopupNavigation.Instance.PushAsync(popup, false).ConfigureAwait(false);
@@ -185,8 +185,8 @@ public sealed class PopupNavigator : IPopupNavigator
 
             Cleanup(page);
             (sender as IDisposable)?.Dispose();
-            (page.BindingContext as IDisposable)?.Dispose();
-            page.BindingContext = null;
+            (page.Content.BindingContext as IDisposable)?.Dispose();
+            page.Content.BindingContext = null;
         };
 
         await PopupNavigation.Instance.PushAsync(popup, false).ConfigureAwait(false);
